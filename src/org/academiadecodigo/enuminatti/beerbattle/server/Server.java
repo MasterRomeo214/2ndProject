@@ -1,7 +1,5 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
-import org.academiadecodigo.enuminatti.beerbattle.client.model.ServiceConnect;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,6 +24,7 @@ public class Server {
 
         try {
             server = new Server();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -34,10 +33,10 @@ public class Server {
 
 
     public Server() throws IOException {
+
         clients = new LinkedList<>();
         serverSocket = new ServerSocket(PORTNUMBER);
         System.out.println("waiting client " + serverSocket.getLocalPort());
-
     }
 
 
@@ -48,10 +47,13 @@ public class Server {
         while (true) {
 
             Socket socket = null;
+
             try {
                 socket = serverSocket.accept();
                 connectionCount++;
-                System.out.println("Client Connected!");
+                System.out.println("Client " + connectionCount + " is connected!");
+
+
                 ServerWorker serverWorker = new ServerWorker(socket);
                 clients.add(serverWorker);
                 new Thread(serverWorker).start();
@@ -63,73 +65,81 @@ public class Server {
     }
 
 
+    public void broadcast(String b, ServerWorker serverWorker) {
 
-
-public void broadcast(String b,ServerWorker serverWorker){
-
-        for(ServerWorker client:clients){
-        if(client==serverWorker){
-        continue;
-        }
-        client.printMessage(b);
-        }
-        }
-
-public class ServerWorker implements Runnable {
-
-    private BufferedReader bufferedReader;
-    private PrintWriter printWriter;
-    private final Socket socket;
-
-    public ServerWorker(Socket socket) {
-        this.socket = socket;
-        bufferedReader = null;
-        printWriter = null;
-    }
-
-
-    public String getMessage() {
-
-        String b = null;
-
-        try {
-            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            b = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public void printMessage(String b) {
-        try {
-            printWriter = new PrintWriter(socket.getOutputStream(), true);
-            printWriter.println(b);
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (ServerWorker client : clients) {
+            if (client == serverWorker) {
+                continue;
+            }
+            client.printMessage(b);
         }
     }
 
-    public void disconnect() {
+    public class ServerWorker implements Runnable {
 
-        try {
-            bufferedReader.close();
-            printWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        private BufferedReader bufferedReader;
+        private PrintWriter printWriter;
+        private final Socket socket;
+
+        public ServerWorker(Socket socket) throws IOException {
+            this.socket = socket;
+            bufferedReader = null;
+            printWriter = null;
+        }
+
+
+        public String getMessage() {
+
+            String b = null;
+
+            try {
+                bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                b = bufferedReader.readLine();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return b;
+        }
+
+        public void printMessage(String b) {
+
+            try {
+                printWriter = new PrintWriter(socket.getOutputStream(), true);
+                printWriter.println(b);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void disconnect() {
+
+            try {
+                bufferedReader.close();
+                printWriter.close();
+                socket.close();
+                System.out.println("Client disconnected");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        @Override
+        public void run() {
+
+            while (true) {
+
+                String message = getMessage();
+
+                if (message == null) {
+                    break;
+                }
+                broadcast(message, this);
+            }
+            disconnect();
         }
     }
-
-
-    @Override
-    public void run() {
-
-        while (true) {
-            String message = getMessage();
-            broadcast(message, this);
-        }
-    }
-}
-
-
 }
