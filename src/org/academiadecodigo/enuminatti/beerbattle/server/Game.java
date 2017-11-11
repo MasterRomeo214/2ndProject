@@ -1,5 +1,7 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Boat;
+
 import java.net.Socket;
 
 
@@ -11,10 +13,10 @@ public class Game {
     private Socket SocketOne;
     private Socket SocketTwo;
 
-    private Boats[] boatsPlayerOne;
-    private Boats[] BoatsPlayerTwo;
+    private Boat[] boatsPlayerOne;
+    private Boat[] BoatsPlayerTwo;
 
-    public Game(Boats[] boatsPlayerOne, Boats[] boatsPlayerTwo) {
+    public Game(Boat[] boatsPlayerOne, Boat[] boatsPlayerTwo) {
         this.SocketOne = new Socket();
         this.SocketTwo = new Socket();
         this.boatsPlayerOne = boatsPlayerOne;
@@ -40,11 +42,11 @@ public class Game {
     }
 
 
-    public Boats[] getBoatsPlayerOne() {
+    public Boat[] getBoatsPlayerOne() {
         return boatsPlayerOne;
     }
 
-    public Boats[] getBoatsPlayerTwo() {
+    public Boat[] getBoatsPlayerTwo() {
         return BoatsPlayerTwo;
     }
 }
