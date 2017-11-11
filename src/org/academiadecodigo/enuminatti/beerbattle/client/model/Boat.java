@@ -8,7 +8,26 @@ public class Boat {
     private String name;
     private Position boatPosition;
     private BoatType boatType;
-    private int size;
 
+    public Boat(Position boatPosition, BoatType boatType) {
+        this.name = boatType.toString();
+        this.boatPosition = boatPosition;
+        this.boatType = boatType;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public Position getBoatPosition() {
+        return boatPosition;
+    }
+
+    public BoatType getBoatType() {
+        return boatType;
+    }
+
+    public void setBoatPosition(Position boatPosition) {
+        this.boatPosition = boatPosition;
+    }
 }
