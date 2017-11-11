@@ -14,7 +14,6 @@ public class Client extends Application {
 
     public void init(){
 
-
     }
 
     public static void main(String[] args) {

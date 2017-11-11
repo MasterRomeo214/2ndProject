@@ -8,7 +8,6 @@ import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationSer
 
 public class Controller {
 
-
     private ComunicationService comunicationService;
 
     @FXML
@@ -27,7 +26,7 @@ public class Controller {
 
     }
 
-    public void events() {
+    public void events(){
 
     }
 
@@ -45,7 +44,7 @@ public class Controller {
 
     }
 
-    public void gameLost() {
+    public void gameLost(){
 
     }
 }

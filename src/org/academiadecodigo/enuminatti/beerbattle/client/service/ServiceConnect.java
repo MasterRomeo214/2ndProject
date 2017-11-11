@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.model;
+package org.academiadecodigo.enuminatti.beerbattle.client.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
