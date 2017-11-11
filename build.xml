@@ -3,9 +3,9 @@
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
-        <property name="project.name" value=“BeerBattle” />
+        <property name="project.name" value=“beer_battle” />
         <property name="src.dir" value="src" />
-        <property name="main.class" value="org.academiadecodigo.bootcamp.gameproject.Main" />
+        <property name="main.class" value="org.academiadecodigo.enuminatti.beerbattle.client.model.ServiceConnect" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
 	<property name="resources.dir" value="resources"/>
