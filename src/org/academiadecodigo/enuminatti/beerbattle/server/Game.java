@@ -1,6 +1,8 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Boat;
+import javafx.fxml.Initializable;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +10,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.LinkedList;
-import java.util.List;
 
 
 /**
@@ -18,8 +19,8 @@ public class Game {
 
     private Socket socketP1;
     private Socket socketP2;
-    private LinkedList<Boat> boatsPlayerOne;
-    private LinkedList<Boat> boatsPlayerTwo;
+    private LinkedList<Beer> beersPlayerOne;
+    private LinkedList<Beer> beersPlayerTwo;
     private Server server;
     private BufferedReader bufferedReaderP1;
     private BufferedReader bufferedReaderP2;
@@ -28,11 +29,11 @@ public class Game {
 
 
     public Game(Server server) {
-        boatsPlayerOne = new LinkedList<>();
-        boatsPlayerTwo = new LinkedList<>();
+        beersPlayerOne = new LinkedList<>();
+        beersPlayerTwo = new LinkedList<>();
         this.server = server;
-        this.boatsPlayerOne = boatsPlayerOne;
-        this.boatsPlayerTwo = boatsPlayerTwo;
+        this.beersPlayerOne = beersPlayerOne;
+        this.beersPlayerTwo = beersPlayerTwo;
         socketP1 = null;
         socketP2 = null;
         bufferedReaderP1 = null;
@@ -57,15 +58,20 @@ public class Game {
 
     }
 
-    public void interpretMessage() throws IOException {
+    public void createBeer() throws IOException {
 
         String messageP1 = bufferedReaderP1.readLine();
         String[] splitMessageP1 = messageP1.split(" ");
 
-        if (splitMessageP1[0].contains("PUTBOAT")) {
-            boatsPlayerOne.add(new Boat());
-        }
+        if (splitMessageP1[0].contains("PUTBEER")) {
+            String typeOfBeer = splitMessageP1[1];
+            BeerType beerType = BeerType.valueOf(typeOfBeer);
+            int x = Integer.parseInt(splitMessageP1[2]);
+            int y = Integer.parseInt(splitMessageP1[3]);
 
+            beersPlayerOne.add(new Beer(beerType, x, y));
+        }
+        
     }
 
     public void receiveAttacks() {
@@ -82,12 +88,12 @@ public class Game {
     }
 
 
-    public Boat[] getBoatsPlayerOne() {
-        return boatsPlayerOne;
+    public Beer[] getBoatsPlayerOne() {
+        return beersPlayerOne;
     }
 
-    public Boat[] getBoatsPlayerTwo() {
-        return boatsPlayerTwo;
+    public Beer[] getBeersPlayerTwo() {
+        return beersPlayerTwo;
     }
 }
 
