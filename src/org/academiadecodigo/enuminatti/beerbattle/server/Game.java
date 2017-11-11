@@ -58,10 +58,11 @@ public class Game {
 
     }
 
-    public void createBeer() throws IOException {
+    public void createBeers() throws IOException {
 
         String messageP1 = bufferedReaderP1.readLine();
         String[] splitMessageP1 = messageP1.split(" ");
+
 
         if (splitMessageP1[0].contains("PUTBEER")) {
             String typeOfBeer = splitMessageP1[1];
@@ -71,12 +72,81 @@ public class Game {
 
             beersPlayerOne.add(new Beer(beerType, x, y));
         }
-        
+
+        String messageP2 = bufferedReaderP2.readLine();
+        String[] splitMessageP2 = messageP2.split(" ");
+
+        if (splitMessageP2[0].contains("PUTBEER")) {
+            String typeOfBeer = splitMessageP2[1];
+            BeerType beerType = BeerType.valueOf(typeOfBeer);
+            int x = Integer.parseInt(splitMessageP2[2]);
+            int y = Integer.parseInt(splitMessageP2[3]);
+
+            beersPlayerTwo.add(new Beer(beerType, x, y));
+        }
+
     }
 
-    public void receiveAttacks() {
+    // Method to send attacks through command "ATK"
+    // Checks if the attack is successful and answers to players
 
+    public void sendAttacks() throws IOException {
+        String messageP1 = bufferedReaderP1.readLine();
+        String[] splitMessageP1 = messageP1.split(" ");
+
+        if (splitMessageP1[0].contains("ATK")) {
+            int x = Integer.parseInt(splitMessageP1[1]);
+            int y = Integer.parseInt(splitMessageP1[2]);
+            if (checkIfIsHit(x, y, "p2")) {
+                printWriterP1.write("HIT " + x + " " + y);
+                printWriterP2.write("HITTED " + x + " " + y);
+                return;
+            }
+            printWriterP1.write("MISS " + x + " " + y);
+            printWriterP2.write("MISSED " + x + " " + y);
+        }
+
+        String messageP2 = bufferedReaderP2.readLine();
+        String[] splitMessageP2 = messageP2.split(" ");
+
+        if (splitMessageP2[0].contains("ATK")) {
+            int x = Integer.parseInt(splitMessageP2[1]);
+            int y = Integer.parseInt(splitMessageP2[2]);
+            if (checkIfIsHit(x, y, "p1")) {
+                printWriterP2.write("HIT " + x + " " + y);
+                printWriterP1.write("HITTED " + x + " " + y);
+                return;
+            }
+            printWriterP2.write("MISS " + x + " " + y);
+            printWriterP1.write("MISSED " + x + " " + y);
+        }
     }
+
+
+    // <3 method to confirm if beer has been hit by players
+
+    private boolean checkIfIsHit(int x, int y, String player) {
+
+
+        if (player.equals("p2")) {
+            for (Beer b : beersPlayerTwo) {
+                if (b.getX() == x && b.getY() == y) {
+                    System.out.println(player + " was hit");
+                    return true;
+                }
+
+            }
+        } else if (player.equals("p1")) {
+            for (Beer b : beersPlayerOne) {
+                if (b.getX() == x && b.getY() == y) {
+                    System.out.println(player + " was hit");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     public void respondAttacks() {
 
