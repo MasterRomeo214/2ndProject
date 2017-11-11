@@ -3,7 +3,7 @@
 Second group project for <Academia de Código_> created by:
 
 Francisco Lourenço @Fxalana <br>
-Gonçalo Carrondo @filipecarrondo<br>
+Gonçalo Carrondo  @filipecarrondo<br>
 Ivan Silvestre @ivansilvestre <br>
 João Pedro Diogo @JPDiogo89 <br>
 Romeu Mendes @MasterRomeo214 <br>
