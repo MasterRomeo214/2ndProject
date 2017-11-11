@@ -26,15 +26,13 @@ public class Game {
     private BufferedReader bufferedReaderP2;
     private PrintWriter printWriterP1;
     private PrintWriter printWriterP2;
+    private boolean endGame;
 
 
     public Game(Server server) {
         beersPlayerOne = new LinkedList<>();
         beersPlayerTwo = new LinkedList<>();
         this.server = server;
-        this.beersPlayerOne = beersPlayerOne;
-        this.beersPlayerTwo = beersPlayerTwo;
-        socketP1 = null;
         socketP2 = null;
         bufferedReaderP1 = null;
         bufferedReaderP2 = null;
@@ -58,13 +56,24 @@ public class Game {
 
     }
 
-    public void createBeers() throws IOException {
+    public void interpretMessage() throws IOException {
 
         String messageP1 = bufferedReaderP1.readLine();
         String[] splitMessageP1 = messageP1.split(" ");
 
+        String messageP2 = bufferedReaderP2.readLine();
+        String[] splitMessageP2 = messageP2.split(" ");
+
+        createBeers(splitMessageP1, splitMessageP2);
+        sendAttacks(splitMessageP1, splitMessageP2);
+        receiveLoser(splitMessageP1, splitMessageP2);
+
+    }
+
+    private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
         if (splitMessageP1[0].contains("PUTBEER")) {
+
             String typeOfBeer = splitMessageP1[1];
             BeerType beerType = BeerType.valueOf(typeOfBeer);
             int x = Integer.parseInt(splitMessageP1[2]);
@@ -73,10 +82,8 @@ public class Game {
             beersPlayerOne.add(new Beer(beerType, x, y));
         }
 
-        String messageP2 = bufferedReaderP2.readLine();
-        String[] splitMessageP2 = messageP2.split(" ");
-
         if (splitMessageP2[0].contains("PUTBEER")) {
+
             String typeOfBeer = splitMessageP2[1];
             BeerType beerType = BeerType.valueOf(typeOfBeer);
             int x = Integer.parseInt(splitMessageP2[2]);
@@ -90,11 +97,10 @@ public class Game {
     // Method to send attacks through command "ATK"
     // Checks if the attack is successful and answers to players
 
-    public void sendAttacks() throws IOException {
-        String messageP1 = bufferedReaderP1.readLine();
-        String[] splitMessageP1 = messageP1.split(" ");
+    private void sendAttacks(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
         if (splitMessageP1[0].contains("ATK")) {
+
             int x = Integer.parseInt(splitMessageP1[1]);
             int y = Integer.parseInt(splitMessageP1[2]);
             if (checkIfIsHit(x, y, "p2")) {
@@ -106,10 +112,8 @@ public class Game {
             printWriterP2.write("MISSED " + x + " " + y);
         }
 
-        String messageP2 = bufferedReaderP2.readLine();
-        String[] splitMessageP2 = messageP2.split(" ");
-
         if (splitMessageP2[0].contains("ATK")) {
+
             int x = Integer.parseInt(splitMessageP2[1]);
             int y = Integer.parseInt(splitMessageP2[2]);
             if (checkIfIsHit(x, y, "p1")) {
@@ -147,81 +151,20 @@ public class Game {
         return false;
     }
 
+    private void receiveLoser(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
-    public void respondAttacks() {
+        if (splitMessageP1[0].contains("LOSER")) {
+            endGame = true;
+            printWriterP2.write("WON");
+            return;
+        }
 
-    }
-
-
-    public void receiveLoser() {
-
-    }
-
-
-    public Beer[] getBoatsPlayerOne() {
-        return beersPlayerOne;
-    }
-
-    public Beer[] getBeersPlayerTwo() {
-        return beersPlayerTwo;
+        if (splitMessageP2[0].contains("LOSER")) {
+            endGame = true;
+            printWriterP1.write("WON");
+            return;
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-    public String getMessage() {
-
-        String b = null;
-
-        try {
-            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            b = bufferedReader.readLine();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public void printMessage(String b) {
-
-        try {
-            printWriter = new PrintWriter(socket.getOutputStream(), true);
-            printWriter.println(b);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void disconnect() {
-
-        try {
-            bufferedReader.close();
-            printWriter.close();
-            socket.close();
-            System.out.println("Client disconnected");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    }
-
-}*/
-
 
 
