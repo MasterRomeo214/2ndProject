@@ -11,23 +11,9 @@ import java.net.Socket;
  */
 public class Server {
 
-
-    public static void main(String[] args) {
-
-        Server server = null;
-
-        try {
-            server = new Server();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        server.init();
-    }
-
-
     private ServerSocket serverSocket;
     public final static int PORTNUMBER = 8080;
+    Game game = null;
 
 
     public Server() throws IOException {
@@ -40,14 +26,17 @@ public class Server {
     private void init() {
 
         int connectionCount = 0;
+        game = new Game(this);
 
 
-        while (true) {
+        while (connectionCount < 3) {
 
             Socket socket = null;
 
             try {
                 socket = serverSocket.accept();
+                game.receiveSockets(socket);
+
                 connectionCount++;
                 System.out.println("Player " + connectionCount + " is connected!");
 
@@ -55,6 +44,19 @@ public class Server {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void main(String[] args) {
+
+        Server server = null;
+
+        try {
+            server = new Server();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        server.init();
     }
 }
 

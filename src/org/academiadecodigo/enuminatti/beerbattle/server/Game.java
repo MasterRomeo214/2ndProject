@@ -1,6 +1,14 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Boat;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**
@@ -8,21 +16,55 @@ import java.net.Socket;
  */
 public class Game {
 
-    private Socket SocketOne;
-    private Socket SocketTwo;
+    private Socket socketP1;
+    private Socket socketP2;
+    private LinkedList<Boat> boatsPlayerOne;
+    private LinkedList<Boat> boatsPlayerTwo;
+    private Server server;
+    private BufferedReader bufferedReaderP1;
+    private BufferedReader bufferedReaderP2;
+    private PrintWriter printWriterP1;
+    private PrintWriter printWriterP2;
 
-    private Boats[] boatsPlayerOne;
-    private Boats[] BoatsPlayerTwo;
 
-    public Game(Boats[] boatsPlayerOne, Boats[] boatsPlayerTwo) {
-        this.SocketOne = new Socket();
-        this.SocketTwo = new Socket();
+    public Game(Server server) {
+        boatsPlayerOne = new LinkedList<>();
+        boatsPlayerTwo = new LinkedList<>();
+        this.server = server;
         this.boatsPlayerOne = boatsPlayerOne;
-        BoatsPlayerTwo = boatsPlayerTwo;
+        this.boatsPlayerTwo = boatsPlayerTwo;
+        socketP1 = null;
+        socketP2 = null;
+        bufferedReaderP1 = null;
+        bufferedReaderP2 = null;
+        printWriterP1 = null;
+        printWriterP2 = null;
+
     }
 
+    //this method will receive the sockets and prepare the readers/writers
+    public void receiveSockets(Socket socket) throws IOException {
 
-    public void receiveSockets(Socket socket) {
+        if (socketP1 == null) {
+            socketP1 = socket;
+            bufferedReaderP1 = new BufferedReader(new InputStreamReader(socketP1.getInputStream()));
+            printWriterP1 = new PrintWriter(socketP1.getOutputStream(), true);
+            return;
+        }
+        socketP2 = socket;
+        bufferedReaderP2 = new BufferedReader(new InputStreamReader(socketP2.getInputStream()));
+        printWriterP2 = new PrintWriter(socketP2.getOutputStream(), true);
+
+    }
+
+    public void interpretMessage() throws IOException {
+
+        String messageP1 = bufferedReaderP1.readLine();
+        String[] splitMessageP1 = messageP1.split(" ");
+
+        if (splitMessageP1[0].contains("PUTBOAT")) {
+            boatsPlayerOne.add(new Boat());
+        }
 
     }
 
@@ -40,11 +82,70 @@ public class Game {
     }
 
 
-    public Boats[] getBoatsPlayerOne() {
+    public Boat[] getBoatsPlayerOne() {
         return boatsPlayerOne;
     }
 
-    public Boats[] getBoatsPlayerTwo() {
-        return BoatsPlayerTwo;
+    public Boat[] getBoatsPlayerTwo() {
+        return boatsPlayerTwo;
     }
 }
+
+
+
+
+
+
+
+
+
+
+/*
+
+
+
+    public String getMessage() {
+
+        String b = null;
+
+        try {
+            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            b = bufferedReader.readLine();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    public void printMessage(String b) {
+
+        try {
+            printWriter = new PrintWriter(socket.getOutputStream(), true);
+            printWriter.println(b);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void disconnect() {
+
+        try {
+            bufferedReader.close();
+            printWriter.close();
+            socket.close();
+            System.out.println("Client disconnected");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    }
+
+}*/
+
+
+
