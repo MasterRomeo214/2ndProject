@@ -52,11 +52,11 @@ public class Server {
 
         try {
             server = new Server();
+            server.init();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        server.init();
     }
 }
 
