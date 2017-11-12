@@ -157,71 +157,24 @@ public class Game {
 
     }
 
-
-    public Beer[] getBoatsPlayerOne() {
-        return beersPlayerOne;
-    }
-
-    public Beer[] getBeersPlayerTwo() {
-        return beersPlayerTwo;
-    }
-}
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-
-    public String getMessage() {
-
-        String b = null;
-
-        try {
-            bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            b = bufferedReader.readLine();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return b;
-    }
-
-    public void printMessage(String b) {
-
-        try {
-            printWriter = new PrintWriter(socket.getOutputStream(), true);
-            printWriter.println(b);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    
     public void disconnect() {
 
         try {
-            bufferedReader.close();
-            printWriter.close();
-            socket.close();
-            System.out.println("Client disconnected");
+            bufferedReaderP1.close();
+            bufferedReaderP2.close();
+            printWriterP1.close();
+            printWriterP2.close();
+            socketP1.close();
+            socketP2.close();
+            System.out.println("Player disconnected");
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+}
 
-
-    }
-
-}*/
 
 
 
