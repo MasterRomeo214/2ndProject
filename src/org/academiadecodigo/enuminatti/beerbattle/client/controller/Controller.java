@@ -3,15 +3,26 @@ package org.academiadecodigo.enuminatti.beerbattle.client.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
+import java.io.IOException;
+
 public class Controller {
 
+    int x;
+    int y;
     private ComunicationService comunicationService;
 
-    public void setComunicationService(ComunicationService comunicationService) {
-        this.comunicationService = comunicationService;
+    public Controller() {
+        this.x = 0;
+        this.y = 0;
+        try {
+            comunicationService = new ComunicationService(8080);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -19,12 +30,11 @@ public class Controller {
 
         Button bClicked = (Button) event.getSource();
 
-        System.out.println(bClicked);
-        System.out.println(getPositionX(bClicked));
-        System.out.println(getPositionY(bClicked));
+        x = getPositionX(bClicked);
+        y = getPositionY(bClicked);
+        System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
     }
-
 
     public void play() {
 
@@ -51,4 +61,17 @@ public class Controller {
     public void gameLost(){
 
     }
+
+    @FXML
+    private Button startButton;
+
+
+
+    @FXML
+    void startButtonPressed(MouseEvent event) {
+
+        comunicationService.sendAttack(x,y);
+
+    }
+
 }

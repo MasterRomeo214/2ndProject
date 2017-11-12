@@ -58,14 +58,21 @@ public class Game {
     public void interpretMessage() throws IOException {
 
         String messageP1 = bufferedReaderP1.readLine();
-        String[] splitMessageP1 = messageP1.split(" ");
-
         String messageP2 = bufferedReaderP2.readLine();
+
+        System.out.println(messageP1);
+
+        if (!messageP1.isEmpty()||!messageP2.isEmpty()){
+
+
+        String[] splitMessageP1 = messageP1.split(" ");
         String[] splitMessageP2 = messageP2.split(" ");
+
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         receiveLoser(splitMessageP1, splitMessageP2);
+        }
 
     }
 

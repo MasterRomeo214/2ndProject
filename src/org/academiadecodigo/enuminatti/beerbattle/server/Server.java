@@ -13,13 +13,19 @@ public class Server {
 
     private ServerSocket serverSocket;
     public final static int PORTNUMBER = 8080;
-    Game game = null;
+    Game game;
 
 
     public Server() throws IOException {
-
+        this.game = null;
         serverSocket = new ServerSocket(PORTNUMBER);
         System.out.println("Waiting player " + serverSocket.getLocalPort());
+    }
+
+    private void start() throws IOException{
+        while(true) {
+            game.interpretMessage();
+        }
     }
 
 
@@ -29,7 +35,7 @@ public class Server {
         game = new Game(this);
 
 
-        while (connectionCount < 3) {
+        //while (true) {
 
             Socket socket = null;
 
@@ -40,11 +46,13 @@ public class Server {
                 connectionCount++;
                 System.out.println("Player " + connectionCount + " is connected!");
 
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
     }
+
 
     public static void main(String[] args) {
 
@@ -53,6 +61,8 @@ public class Server {
         try {
             server = new Server();
             server.init();
+            server.start();
+
 
         } catch (IOException e) {
             e.printStackTrace();
