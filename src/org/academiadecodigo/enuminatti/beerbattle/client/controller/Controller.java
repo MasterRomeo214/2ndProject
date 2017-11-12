@@ -10,6 +10,10 @@ public class Controller {
 
     private ComunicationService comunicationService;
 
+    public void setComunicationService(ComunicationService comunicationService) {
+        this.comunicationService = comunicationService;
+    }
+
     @FXML
     void buttonPressed(ActionEvent event) {
 

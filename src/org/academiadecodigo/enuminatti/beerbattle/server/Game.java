@@ -72,7 +72,7 @@ public class Game {
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
-        if (splitMessageP1[0].contains("PUTBEER")) {
+        if (splitMessageP1[0].contains("PUT")) {
 
             String typeOfBeer = splitMessageP1[1];
             BeerType beerType = BeerType.valueOf(typeOfBeer);
@@ -82,7 +82,7 @@ public class Game {
             beersPlayerOne.add(new Beer(beerType, x, y));
         }
 
-        if (splitMessageP2[0].contains("PUTBEER")) {
+        if (splitMessageP2[0].contains("PUT")) {
 
             String typeOfBeer = splitMessageP2[1];
             BeerType beerType = BeerType.valueOf(typeOfBeer);
