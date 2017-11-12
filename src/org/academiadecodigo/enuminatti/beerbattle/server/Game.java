@@ -1,6 +1,5 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
-import javafx.fxml.Initializable;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 
@@ -157,7 +156,7 @@ public class Game {
 
     }
 
-    
+
     public void disconnect() {
 
         try {
@@ -167,7 +166,7 @@ public class Game {
             printWriterP2.close();
             socketP1.close();
             socketP2.close();
-            System.out.println("Player disconnected");
+            System.out.println("Players disconnected");
 
         } catch (IOException e) {
             e.printStackTrace();
