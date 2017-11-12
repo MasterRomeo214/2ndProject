@@ -33,7 +33,14 @@ public class ComunicationService {
 
     public void sendLoser() {
 
-        printWriter.write("");
+        printWriter.write("LOSER");
+    }
+
+    public void disconnect() throws IOException {
+
+        bufferedReader.close();
+        printWriter.close();
+        serverSocket.close();
     }
 
     public void receiveMessage() throws IOException {
@@ -75,6 +82,7 @@ public class ComunicationService {
             case ("WON"):
                 //game ends and view updates with winner message
 
+                disconnect();
                 break;
 
 

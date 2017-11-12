@@ -7,7 +7,7 @@ import java.util.Set;
 /**
  * Created by codecadet on 10/11/17.
  */
-public class Grid {
+public class Grid  {
 
     private Controller controller;
 

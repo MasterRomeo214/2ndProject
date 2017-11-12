@@ -1,6 +1,5 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
-import javafx.fxml.Initializable;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 
