@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
 import java.io.IOException;
@@ -14,6 +15,19 @@ public class Controller {
     private int x;
     private int y;
     private ComunicationService comunicationService;
+
+    @FXML
+    private GridPane secondGrid;
+
+    @FXML
+    private Button startButton;
+
+    @FXML
+    private Pane paneo;
+
+    @FXML
+    private Pane panet;
+
 
     public Controller() {
         this.x = 0;
@@ -32,6 +46,13 @@ public class Controller {
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
+
+
+
+
+
+
+
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
     }
@@ -44,16 +65,16 @@ public class Controller {
 
     }
 
-    public Integer getPositionX(Button button6) {
+    public Integer getPositionX(Button button) {
 
-        Integer x = GridPane.getColumnIndex(button6);
+        Integer x = GridPane.getColumnIndex(button);
         return (x == null) ? 0 : x;
 
     }
 
-    public Integer getPositionY(Button button6) {
+    public Integer getPositionY(Button button) {
 
-        Integer y = GridPane.getRowIndex(button6);
+        Integer y = GridPane.getRowIndex(button);
         return (y == null) ? 0 : y;
 
     }
@@ -63,15 +84,21 @@ public class Controller {
     }
 
     @FXML
-    private Button startButton;
-
-
-
-    @FXML
     void startButtonPressed(MouseEvent event) {
 
         comunicationService.sendAttack(x,y);
+        secondGrid.setVisible(true);
+        startButton.setText("Attack");
+
 
     }
+    public void draw(){
+
+
+        paneo.setStyle("-fx-background-color: red");
+        panet.setStyle("-fx-background-color: red");
+    }
+
+
 
 }
