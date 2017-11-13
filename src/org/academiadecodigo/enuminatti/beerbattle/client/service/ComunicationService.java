@@ -29,6 +29,11 @@ public class ComunicationService implements Service,Runnable {
         this.controller = controller;
     }
 
+    public void sendReady(){
+        printWriter.println("READY");
+        System.out.println("rdy sent carrondo BELIEVE");
+    }
+
     public void sendBoats(int x, int y) {
 
         printWriter.println("PUT " + "MINI " + x + " " + y);
@@ -41,6 +46,7 @@ public class ComunicationService implements Service,Runnable {
 
         printWriter.println("ATK " + x + " " + y);
         System.out.println("Attack sent to " + x + " " + y);
+
 
     }
 
@@ -100,6 +106,7 @@ public class ComunicationService implements Service,Runnable {
                 break;
 
             case("READY"):
+                System.out.println("REEADYYYY");
                 controller.releaseStartButton();
                 break;
 

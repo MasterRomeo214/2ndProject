@@ -79,6 +79,8 @@ public class Game {
         messageP2= bufferedReaderP2.readLine();
         System.out.println(messageP2);
         messageP1="";
+        splitMessageP1[0]="";
+        splitMessageP2 = messageP2.split(" ");
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);

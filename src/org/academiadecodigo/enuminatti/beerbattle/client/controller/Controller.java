@@ -33,6 +33,7 @@ public class Controller {
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
+
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
     }
@@ -66,6 +67,10 @@ public class Controller {
     @FXML
     private Button startButton;
 
+    public void hideStartButton(){
+        startButton.setVisible(false);
+    }
+
     public void releaseStartButton(){
          startButton.setVisible(true);
     }
@@ -73,8 +78,10 @@ public class Controller {
     @FXML
     void startButtonPressed(MouseEvent event) {
 
+        comunicationService.sendReady();
         comunicationService.sendAttack(x,y);
         startButton.setVisible(false);
+
 
     }
 
