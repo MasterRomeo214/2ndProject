@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class Controller {
 
-    int x;
-    int y;
+    private int x;
+    private int y;
     private ComunicationService comunicationService;
 
     public Controller() {

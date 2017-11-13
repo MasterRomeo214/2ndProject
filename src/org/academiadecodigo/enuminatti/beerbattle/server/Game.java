@@ -49,6 +49,7 @@ public class Game {
             printWriterP1 = new PrintWriter(socketP1.getOutputStream(), true);
             return;
         }
+
         socketP2 = socket;
         bufferedReaderP2 = new BufferedReader(new InputStreamReader(socketP2.getInputStream()));
         printWriterP2 = new PrintWriter(socketP2.getOutputStream(), true);
@@ -57,10 +58,15 @@ public class Game {
 
     public void interpretMessage() throws IOException {
 
+        System.out.println("IN");
+
         String messageP1 = bufferedReaderP1.readLine();
+
+        System.out.println("P1 INTERP");
+
         String messageP2 = bufferedReaderP2.readLine();
 
-        System.out.println("oi");
+        System.out.println("P2 INTERP");
 
 
         System.out.println(messageP1);

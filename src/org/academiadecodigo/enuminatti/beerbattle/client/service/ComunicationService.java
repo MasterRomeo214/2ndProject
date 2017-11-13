@@ -28,21 +28,22 @@ public class ComunicationService implements Service {
 
     public void sendBoats(int x, int y) {
 
-        printWriter.write("PUT " + "MINI " + x + " " + y);
+        printWriter.println("PUT " + "MINI " + x + " " + y);
         System.out.println("Boat created at " + x + " " + y);
+
 
     }
 
     public void sendAttack(int x, int y) {
 
-        printWriter.write("ATK " + x + " " + y);
+        printWriter.println("ATK " + x + " " + y);
         System.out.println("Attack sent to " + x + " " + y);
 
     }
 
     public void sendLoser() {
 
-        printWriter.write("LOSER");
+        printWriter.println("LOSER");
     }
 
     public void disconnect() throws IOException {

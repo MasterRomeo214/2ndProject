@@ -22,9 +22,13 @@ public class Server {
         System.out.println("Waiting player " + serverSocket.getLocalPort());
     }
 
-    private void start() throws IOException {
-        System.out.println("oi");
-        game.interpretMessage();
+    private void start() {
+        try {
+            System.out.println("entrou no start");
+            game.interpretMessage();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -34,21 +38,24 @@ public class Server {
         game = new Game(this);
 
 
-        //while (true) {
+        while (connectionCount < 2) {
 
-        Socket socket = null;
+            Socket socket = null;
 
-        try {
-            socket = serverSocket.accept();
-            game.receiveSockets(socket);
+            try {
+                socket = serverSocket.accept();
+                game.receiveSockets(socket);
 
-            connectionCount++;
-            System.out.println("Player " + connectionCount + " is connected!");
+                connectionCount++;
+                System.out.println("Player " + connectionCount + " is connected!");
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
+        System.out.println("LEAVING INIT SERVER");
 
     }
 
