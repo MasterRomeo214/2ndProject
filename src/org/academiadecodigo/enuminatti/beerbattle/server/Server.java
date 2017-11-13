@@ -22,12 +22,11 @@ public class Server {
         System.out.println("Waiting player " + serverSocket.getLocalPort());
     }
 
-    private void start() throws IOException{
-        while(true) {
-            game.interpretMessage();
-        }
-    }
+    private void start() throws IOException {
+        System.out.println("oi");
+        game.interpretMessage();
 
+    }
 
     private void init() {
 
@@ -37,19 +36,19 @@ public class Server {
 
         //while (true) {
 
-            Socket socket = null;
+        Socket socket = null;
 
-            try {
-                socket = serverSocket.accept();
-                game.receiveSockets(socket);
+        try {
+            socket = serverSocket.accept();
+            game.receiveSockets(socket);
 
-                connectionCount++;
-                System.out.println("Player " + connectionCount + " is connected!");
+            connectionCount++;
+            System.out.println("Player " + connectionCount + " is connected!");
 
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -15,7 +15,7 @@ import java.util.LinkedList;
  * Created by codecadet on 07/11/17.
  */
 public class Game {
-
+//array of players
     private Socket socketP1;
     private Socket socketP2;
     private LinkedList<Beer> beersPlayerOne;
@@ -60,7 +60,11 @@ public class Game {
         String messageP1 = bufferedReaderP1.readLine();
         String messageP2 = bufferedReaderP2.readLine();
 
+        System.out.println("oi");
+
+
         System.out.println(messageP1);
+        System.out.println(messageP2);
 
         if (!messageP1.isEmpty()||!messageP2.isEmpty()){
 
