@@ -60,35 +60,40 @@ public class Game {
     public void interpretMessage() throws IOException {
 
 
-        System.out.println("IN");
+        System.out.println("Start");
 
         String messageP1 = "";
         messageP1= bufferedReaderP1.readLine();
-
-
-        System.out.println("P1 INTERP");
-        String messageP2 = "";
-        if (1==2){
-        messageP2= bufferedReaderP2.readLine();
-
-        }
-        System.out.println("P2 INTERP");
-
         System.out.println(messageP1);
-        System.out.println(messageP2);
 
-        //if (!messageP1.isEmpty()||!messageP2.isEmpty()){
-
+        String messageP2 = "";
         String[] splitMessageP1 = messageP1.split(" ");
         String[] splitMessageP2 = messageP2.split(" ");
-
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         receiveLoser(splitMessageP1, splitMessageP2);
-       // }
+        readyPlayer(splitMessageP1,splitMessageP2);
 
 
+        messageP2= bufferedReaderP2.readLine();
+        System.out.println(messageP2);
+        messageP1="";
+
+        createBeers(splitMessageP1, splitMessageP2);
+        sendAttacks(splitMessageP1, splitMessageP2);
+        receiveLoser(splitMessageP1, splitMessageP2);
+        readyPlayer(splitMessageP1,splitMessageP2);
+    }
+
+    private void readyPlayer(String[] splitMessageP1, String[] splitMessageP2) {
+        if (splitMessageP1[0].contains("READY")) {
+            printWriterP2.println("READY");
+            return;
+        }
+        if (splitMessageP2[0].contains("READY")) {
+            printWriterP1.println("READY");
+        }
     }
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
@@ -124,13 +129,13 @@ public class Game {
 
             int x = Integer.parseInt(splitMessageP1[1]);
             int y = Integer.parseInt(splitMessageP1[2]);
-            //if (checkIfIsHit(x, y, "p2")) {
+            if (checkIfIsHit(x, y, "p2")) {
                 printWriterP1.println("HIT " + x + " " + y);
                 printWriterP2.println("HITTED " + x + " " + y);
                 return;
-            //}
-            //printWriterP1.println("MISS " + x + " " + y);
-            //printWriterP2.println("MISSED " + x + " " + y);
+            }
+            printWriterP1.println("MISS " + x + " " + y);
+            printWriterP2.println("MISSED " + x + " " + y);
         }
 
         if (splitMessageP2[0].contains("ATK")) {
