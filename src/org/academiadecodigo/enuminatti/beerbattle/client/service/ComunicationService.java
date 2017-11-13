@@ -25,6 +25,10 @@ public class ComunicationService implements Service,Runnable {
         thread.start();
     }
 
+    public void setController(Controller controller) {
+        this.controller = controller;
+    }
+
     public void sendBoats(int x, int y) {
 
         printWriter.println("PUT " + "MINI " + x + " " + y);
@@ -93,6 +97,10 @@ public class ComunicationService implements Service,Runnable {
             case ("WON"):
                 //game ends and view updates with winner message
                 disconnect();
+                break;
+
+            case("READY"):
+                controller.releaseStartButton();
                 break;
 
 

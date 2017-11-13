@@ -23,6 +23,7 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        comunicationService.setController(this);
     }
 
     @FXML
@@ -65,12 +66,15 @@ public class Controller {
     @FXML
     private Button startButton;
 
-
+    public void releaseStartButton(){
+         startButton.setVisible(true);
+    }
 
     @FXML
     void startButtonPressed(MouseEvent event) {
 
         comunicationService.sendAttack(x,y);
+        startButton.setVisible(false);
 
     }
 

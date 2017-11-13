@@ -25,7 +25,6 @@ public class Server {
     private void start() {
         while (true){
 
-
         try {
             game.interpretMessage();
         } catch (IOException e) {
