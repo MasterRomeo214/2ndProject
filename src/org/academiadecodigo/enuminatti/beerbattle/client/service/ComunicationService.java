@@ -8,22 +8,21 @@ import java.net.Socket;
 /**
  * Created by codecadet on 10/11/17.
  */
-public class ComunicationService implements Service {
+public class ComunicationService implements Service,Runnable {
 
     private Socket serverSocket;
     private BufferedReader bufferedReader;
     private PrintWriter printWriter;
     private Controller controller;
 
+
     public ComunicationService(int portNumber) throws IOException {
 
         serverSocket = new Socket("localhost", portNumber);
         bufferedReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
         printWriter = new PrintWriter(serverSocket.getOutputStream(), true);
-    }
-
-    public void setController(Controller controller) {
-        this.controller = controller;
+        Thread thread = new Thread(this);
+        thread.start();
     }
 
     public void sendBoats(int x, int y) {
@@ -58,6 +57,8 @@ public class ComunicationService implements Service {
         int x = 0;
         int y = 0;
         String messageFromServer = null;
+
+        System.out.println("From other player " + messageFromServer);
         String[] splitMessage;
         messageFromServer = bufferedReader.readLine();
         splitMessage = messageFromServer.split(" ");
@@ -99,6 +100,19 @@ public class ComunicationService implements Service {
                 System.out.println("This wasn't supposed to happen ;)");
                 break;
 
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true){
+            try {
+                receiveMessage();
+
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
         }
     }
 }

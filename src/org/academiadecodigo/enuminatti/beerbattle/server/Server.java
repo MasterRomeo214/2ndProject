@@ -23,11 +23,14 @@ public class Server {
     }
 
     private void start() {
+        while (true){
+
+
         try {
-            System.out.println("entrou no start");
             game.interpretMessage();
         } catch (IOException e) {
             e.printStackTrace();
+        }
         }
 
     }
