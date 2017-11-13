@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
 import java.io.IOException;
@@ -14,16 +16,21 @@ public class Controller {
     private int x;
     private int y;
     private ComunicationService comunicationService;
+    private Grid primaryGrid;
+    private boolean booleanoDoRomeu;
 
     public Controller() {
+        booleanoDoRomeu=false;
         this.x = 0;
         this.y = 0;
         try {
             comunicationService = new ComunicationService(8080);
+            primaryGrid = new Grid();
         } catch (IOException e) {
             e.printStackTrace();
         }
         comunicationService.setController(this);
+        primaryGrid.setController(this);
     }
 
     @FXML
@@ -35,7 +42,9 @@ public class Controller {
         y = getPositionY(bClicked);
 
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
-
+        if (booleanoDoRomeu){
+            primaryGrid.createBeer(BeerType.MINI,x,y);
+        }
     }
 
     public void play() {
@@ -67,10 +76,6 @@ public class Controller {
     @FXML
     private Button startButton;
 
-    public void hideStartButton(){
-        startButton.setVisible(false);
-    }
-
     public void releaseStartButton(){
          startButton.setVisible(true);
     }
@@ -78,11 +83,10 @@ public class Controller {
     @FXML
     void startButtonPressed(MouseEvent event) {
 
+        booleanoDoRomeu = false;
         comunicationService.sendReady();
         comunicationService.sendAttack(x,y);
         startButton.setVisible(false);
 
-
     }
-
 }

@@ -22,7 +22,7 @@ public class Grid  {
         return beers;
     }
 
-    public void createBoat(BeerType beerType, int x, int y) {
+    public void createBeer(BeerType beerType, int x, int y) {
         beers.add(new Beer(beerType, x, y));
 
     }
