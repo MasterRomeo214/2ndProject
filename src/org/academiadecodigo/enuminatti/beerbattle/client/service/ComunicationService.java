@@ -31,7 +31,7 @@ public class ComunicationService implements Service,Runnable {
 
     public void sendReady(){
         printWriter.println("READY");
-        System.out.println("rdy sent carrondo BELIEVE");
+        System.out.println("rdy sent");
     }
 
     public void sendBoats(int x, int y) {
@@ -106,7 +106,7 @@ public class ComunicationService implements Service,Runnable {
                 break;
 
             case("READY"):
-                System.out.println("REEADYYYY");
+                System.out.println("ready msg received");
                 controller.releaseStartButton();
                 break;
 

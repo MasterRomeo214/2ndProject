@@ -35,8 +35,12 @@ public class Controller {
 
     @FXML
     void buttonPressed(ActionEvent event) {
-
         Button bClicked = (Button) event.getSource();
+        if (bClicked.isDisabled()){
+            bClicked.setDisable(false);
+        }
+
+        bClicked.setDisable(true);
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
@@ -77,7 +81,7 @@ public class Controller {
     private Button startButton;
 
     public void releaseStartButton(){
-         startButton.setVisible(true);
+         startButton.setDisable(false);
     }
 
     @FXML
@@ -86,7 +90,7 @@ public class Controller {
         booleanoDoRomeu = false;
         comunicationService.sendReady();
         comunicationService.sendAttack(x,y);
-        startButton.setVisible(false);
+        startButton.setDisable(true);
 
     }
 }
