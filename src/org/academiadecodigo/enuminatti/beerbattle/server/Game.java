@@ -26,6 +26,7 @@ public class Game {
     private PrintWriter printWriterP1;
     private PrintWriter printWriterP2;
     private boolean endGame;
+    private boolean booleanoDoIvan;
 
 
     public Game(Server server) {
@@ -76,6 +77,9 @@ public class Game {
         readyPlayer(splitMessageP1,splitMessageP2);
 
 
+        if (booleanoDoIvan){
+
+        }
         messageP2= bufferedReaderP2.readLine();
         System.out.println(messageP2);
         messageP1="";

@@ -20,8 +20,8 @@ public class ComunicationService implements Service,Runnable {
     private Grid grid;
 
 
-    public ComunicationService(int portNumber) throws IOException {
-
+    public ComunicationService(int portNumber, Grid grid) throws IOException {
+        this.grid = grid;
         serverSocket = new Socket("localhost", portNumber);
         bufferedReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
         printWriter = new PrintWriter(serverSocket.getOutputStream(), true);
@@ -39,7 +39,9 @@ public class ComunicationService implements Service,Runnable {
     }
 
     public void sendBeers() {
+
         Set<Beer> beers = grid.getBeersSet();
+
         for (Beer b :beers) {
             int x = b.getX();
             int y = b.getY();
@@ -47,13 +49,14 @@ public class ComunicationService implements Service,Runnable {
         System.out.println("Boat created at " + x + " " + y);
 
         }
+        printWriter.println("POSITIONRDY");
+        System.out.println("positionrdy sent");
     }
 
     public void sendAttack(int x, int y) {
 
         printWriter.println("ATK " + x + " " + y);
         System.out.println("Attack sent to " + x + " " + y);
-
 
     }
 
@@ -73,7 +76,7 @@ public class ComunicationService implements Service,Runnable {
 
         int x = 0;
         int y = 0;
-        String messageFromServer = null;
+        String messageFromServer = "";
 
         System.out.println("From other player " + messageFromServer);
         String[] splitMessage;
@@ -116,7 +119,6 @@ public class ComunicationService implements Service,Runnable {
                 System.out.println("ready msg received");
                 controller.releaseStartButton();
                 break;
-
 
             default:
                 System.out.println("This wasn't supposed to happen ;)");

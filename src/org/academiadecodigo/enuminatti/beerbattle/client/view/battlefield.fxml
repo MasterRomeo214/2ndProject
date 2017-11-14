@@ -64,7 +64,7 @@
             <Button fx:id="button35" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button fx:id="startButton" layoutX="146.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#startButtonPressed" text="Start" />
+      <Button fx:id="startButton" layoutX="146.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#startButtonPressed" text="Send" />
       <GridPane fx:id="secondGrid" gridLinesVisible="true" layoutX="404.0" layoutY="33.0" prefHeight="117.0" prefWidth="147.0" style="-fx-background-color: #ffff;" visible="false">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

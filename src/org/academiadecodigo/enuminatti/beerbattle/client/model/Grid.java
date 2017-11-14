@@ -16,6 +16,8 @@ public class Grid  {
 
     public void setController(Controller controller) {
         this.controller = controller;
+        controller.setPrimaryGrid(this);
+
     }
 
     public Set<Beer> getBeersSet() {
