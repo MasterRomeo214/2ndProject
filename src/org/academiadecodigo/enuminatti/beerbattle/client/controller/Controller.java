@@ -7,6 +7,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
@@ -63,14 +64,17 @@ public class Controller {
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
-        if (startButton.getText().contains("Send")) {
-            if (test) {
-                bClicked.setStyle("-fx-fill: cyan");
-                primaryGrid.createBeer(x, y);
-                test = false;
-                return;
-            }
+        if (!booleanoDoRomeu) {
+            bClicked.setStyle("-fx-background-color:");
+            primaryGrid.createBeer(x, y);
+            booleanoDoRomeu = true;
+            return;
         }
+        if (booleanoDoRomeu) {
+            bClicked.setStyle("-fx-background-color:aqua ");
+            booleanoDoRomeu = false;
+        }
+
     }
 
     public void play() {
