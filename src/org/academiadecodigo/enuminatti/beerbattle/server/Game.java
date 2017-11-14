@@ -15,7 +15,7 @@ import java.util.LinkedList;
  * Created by codecadet on 07/11/17.
  */
 public class Game {
-//array of players
+    //array of players
     private Socket socketP1;
     private Socket socketP2;
     private LinkedList<Beer> beersPlayerOne;
@@ -64,7 +64,7 @@ public class Game {
         System.out.println("Start");
 
         String messageP1 = "";
-        messageP1= bufferedReaderP1.readLine();
+        messageP1 = bufferedReaderP1.readLine();
         System.out.println(messageP1);
 
         String messageP2 = "";
@@ -74,22 +74,22 @@ public class Game {
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         receiveLoser(splitMessageP1, splitMessageP2);
-        readyPlayer(splitMessageP1,splitMessageP2);
+        readyPlayer(splitMessageP1, splitMessageP2);
 
 
-        if (booleanoDoIvan){
+        if (booleanoDoIvan) {
 
         }
-        messageP2= bufferedReaderP2.readLine();
+        messageP2 = bufferedReaderP2.readLine();
         System.out.println(messageP2);
-        messageP1="";
-        splitMessageP1[0]="";
+        messageP1 = "";
+        splitMessageP1[0] = "";
         splitMessageP2 = messageP2.split(" ");
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         receiveLoser(splitMessageP1, splitMessageP2);
-        readyPlayer(splitMessageP1,splitMessageP2);
+        readyPlayer(splitMessageP1, splitMessageP2);
     }
 
     private void readyPlayer(String[] splitMessageP1, String[] splitMessageP2) {

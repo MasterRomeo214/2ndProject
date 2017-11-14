@@ -27,7 +27,6 @@ public class Client extends Application {
         primaryStage.setTitle("BeerBattle");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
 
     public void stop() {

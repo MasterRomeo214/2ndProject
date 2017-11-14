@@ -10,7 +10,7 @@ public class Beer {
     private int x;
     private int y;
 
-    public Beer(BeerType beerType, int x, int y) {
+    public Beer(int x, int y) {
         this.name = beerType.toString();
         this.beerType = beerType;
         this.x = x;

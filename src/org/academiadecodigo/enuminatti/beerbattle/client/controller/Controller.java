@@ -3,28 +3,24 @@ package org.academiadecodigo.enuminatti.beerbattle.client.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Position;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
 import java.io.IOException;
-import java.util.LinkedList;
 
 public class Controller {
 
     boolean test = false;
-    LinkedList<Position> initialPosition;
     private Integer x;
     private Integer y;
     private ComunicationService comunicationService;
     private Grid primaryGrid;
     private boolean booleanoDoRomeu;
+
 
     @FXML
     private GridPane secondGrid;
@@ -41,14 +37,13 @@ public class Controller {
 
     public Controller() {
 
-        initialPosition = new LinkedList<>();
         booleanoDoRomeu = true;
         this.x = 0;
         this.y = 0;
         try {
             primaryGrid = new Grid();
             comunicationService = new ComunicationService(8080, primaryGrid);
-        comunicationService.setController(this);
+            comunicationService.setController(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -71,12 +66,10 @@ public class Controller {
         if (startButton.getText().contains("Send")) {
             if (test) {
                 bClicked.setStyle("-fx-fill: cyan");
-                primaryGrid.createBeer(BeerType.MINI,x,y);
+                primaryGrid.createBeer(x, y);
                 test = false;
                 return;
             }
-
-
         }
     }
 
@@ -99,7 +92,6 @@ public class Controller {
 
         Integer y = GridPane.getRowIndex(button);
         return (y == null) ? 0 : y;
-
     }
 
     public void gameLost() {
@@ -113,22 +105,18 @@ public class Controller {
     @FXML
     void startButtonPressed(MouseEvent event) {
         //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
-        if (startButton.getText().contains("Send")){
+        if (startButton.getText().contains("Send")) {
 
-            comunicationService.sendBeers();
-            return;
-
+            //comunicationService.sendBeers();
+            //return;
         }
-        if (startButton.getText().contains("Attack")){
-        startButton.setDisable(true);
-
+        if (startButton.getText().contains("Attack")) {
+            startButton.setDisable(true);
         }
 
         startButton.setText("Attack");
         comunicationService.sendReady();
         comunicationService.sendAttack(x, y);
-        booleanoDoRomeu = false;
-
     }
 
     public void draw() {
@@ -142,14 +130,13 @@ public class Controller {
     private void drawBeers() {
 
 
-        for (Beer b: primaryGrid.getBeersSet()) {
+        for (Beer b : primaryGrid.getBeersSet()) {
 
             int x = b.getX();
             int y = b.getY();
             Pane pane = new Pane();
-            secondGrid.add(pane,x,y);
+            secondGrid.add(pane, x, y);
             pane.setStyle("-fx-background-color: green");
-
         }
     }
 }

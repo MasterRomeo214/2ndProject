@@ -11,7 +11,7 @@ import java.util.Set;
 /**
  * Created by codecadet on 10/11/17.
  */
-public class ComunicationService implements Service,Runnable {
+public class ComunicationService implements Service, Runnable {
 
     private Socket serverSocket;
     private BufferedReader bufferedReader;
@@ -33,7 +33,7 @@ public class ComunicationService implements Service,Runnable {
         this.controller = controller;
     }
 
-    public void sendReady(){
+    public void sendReady() {
         printWriter.println("READY");
         System.out.println("rdy sent");
     }
@@ -42,11 +42,11 @@ public class ComunicationService implements Service,Runnable {
 
         Set<Beer> beers = grid.getBeersSet();
 
-        for (Beer b :beers) {
+        for (Beer b : beers) {
             int x = b.getX();
             int y = b.getY();
-        printWriter.println("PUT " + x + " " + y);
-        System.out.println("Boat created at " + x + " " + y);
+            printWriter.println("PUT " + x + " " + y);
+            System.out.println("Boat created at " + x + " " + y);
 
         }
         printWriter.println("POSITIONRDY");
@@ -57,7 +57,6 @@ public class ComunicationService implements Service,Runnable {
 
         printWriter.println("ATK " + x + " " + y);
         System.out.println("Attack sent to " + x + " " + y);
-
     }
 
     public void sendLoser() {
@@ -115,7 +114,7 @@ public class ComunicationService implements Service,Runnable {
                 disconnect();
                 break;
 
-            case("READY"):
+            case ("READY"):
                 System.out.println("ready msg received");
                 controller.releaseStartButton();
                 break;
@@ -129,7 +128,7 @@ public class ComunicationService implements Service,Runnable {
 
     @Override
     public void run() {
-        while (true){
+        while (true) {
             try {
                 receiveMessage();
 

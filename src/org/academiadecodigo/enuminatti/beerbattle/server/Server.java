@@ -23,13 +23,13 @@ public class Server {
     }
 
     private void start() {
-        while (true){
+        while (true) {
 
-        try {
-            game.interpretMessage();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            try {
+                game.interpretMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
