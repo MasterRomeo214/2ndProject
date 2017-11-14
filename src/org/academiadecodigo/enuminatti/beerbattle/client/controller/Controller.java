@@ -16,6 +16,7 @@ import java.util.LinkedList;
 
 public class Controller {
 
+    boolean test = false;
     LinkedList<Position> initialPosition;
     private Integer x;
     private Integer y;
@@ -45,7 +46,6 @@ public class Controller {
         this.y = 0;
         try {
             comunicationService = new ComunicationService(8080);
-            primaryGrid = new Grid();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +53,10 @@ public class Controller {
         primaryGrid.setController(this);
     }
 
-    boolean test = false;
+    public void setPrimaryGrid(Grid primaryGrid) {
+        this.primaryGrid = primaryGrid;
+    }
+
 
     @FXML
     void buttonPressed(ActionEvent event) {
@@ -113,10 +116,12 @@ public class Controller {
 
 
         comunicationService.sendAttack(x, y);
-        secondGrid.add(new Label("X"), x, y);
+        Pane pane = new Pane();
+        secondGrid.setVisible(true);
+        secondGrid.add(pane, x, y);
+        pane.setStyle("-fx-background-color: green");
         //get(x + y).setStyle("-fx-background-color: rebeccapurple");
 
-        secondGrid.setVisible(true);
         startButton.setText("Attack");
 
         booleanoDoRomeu = false;
@@ -133,5 +138,12 @@ public class Controller {
         panet.setStyle("-fx-background-color: red");
     }
 
+
+    private void drawBeers() {
+        for (Beer b: beers
+             ) {
+
+        }
+    }
 
 }
