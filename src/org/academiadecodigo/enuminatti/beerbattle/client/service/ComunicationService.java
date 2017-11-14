@@ -1,9 +1,12 @@
 package org.academiadecodigo.enuminatti.beerbattle.client.service;
 
 import org.academiadecodigo.enuminatti.beerbattle.client.controller.Controller;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Set;
 
 /**
  * Created by codecadet on 10/11/17.
@@ -14,6 +17,7 @@ public class ComunicationService implements Service,Runnable {
     private BufferedReader bufferedReader;
     private PrintWriter printWriter;
     private Controller controller;
+    private Grid grid;
 
 
     public ComunicationService(int portNumber) throws IOException {
@@ -34,12 +38,15 @@ public class ComunicationService implements Service,Runnable {
         System.out.println("rdy sent");
     }
 
-    public void sendBoats(int x, int y) {
-
-        printWriter.println("PUT " + "MINI " + x + " " + y);
+    public void sendBeers() {
+        Set<Beer> beers = grid.getBeersSet();
+        for (Beer b :beers) {
+            int x = b.getX();
+            int y = b.getY();
+        printWriter.println("PUT " + x + " " + y);
         System.out.println("Boat created at " + x + " " + y);
 
-
+        }
     }
 
     public void sendAttack(int x, int y) {

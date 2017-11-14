@@ -20,7 +20,7 @@ public class Controller {
     private boolean booleanoDoRomeu;
 
     public Controller() {
-        booleanoDoRomeu=false;
+        booleanoDoRomeu = true;
         this.x = 0;
         this.y = 0;
         try {
@@ -33,21 +33,28 @@ public class Controller {
         primaryGrid.setController(this);
     }
 
+    boolean test = false;
+
     @FXML
     void buttonPressed(ActionEvent event) {
         Button bClicked = (Button) event.getSource();
-        if (bClicked.isDisabled()){
-            bClicked.setDisable(false);
-        }
 
-        bClicked.setDisable(true);
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
 
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
-        if (booleanoDoRomeu){
-            primaryGrid.createBeer(BeerType.MINI,x,y);
+        if (booleanoDoRomeu) {
+            if (test) {
+                bClicked.setStyle("-fx-fill: cyan");
+                test = false;
+                return;
+            }
+
+            bClicked.setStyle("-fx-background-color: gray");
+            test = true;
+            primaryGrid.createBeer(BeerType.MINI, x, y);
+            comunicationService.sendBeers();
         }
     }
 
@@ -55,7 +62,7 @@ public class Controller {
 
     }
 
-    public void events(){
+    public void events() {
 
     }
 
@@ -73,15 +80,15 @@ public class Controller {
 
     }
 
-    public void gameLost(){
+    public void gameLost() {
 
     }
 
     @FXML
     private Button startButton;
 
-    public void releaseStartButton(){
-         startButton.setDisable(false);
+    public void releaseStartButton() {
+        startButton.setDisable(false);
     }
 
     @FXML
@@ -89,7 +96,7 @@ public class Controller {
 
         booleanoDoRomeu = false;
         comunicationService.sendReady();
-        comunicationService.sendAttack(x,y);
+        comunicationService.sendAttack(x, y);
         startButton.setDisable(true);
 
     }
