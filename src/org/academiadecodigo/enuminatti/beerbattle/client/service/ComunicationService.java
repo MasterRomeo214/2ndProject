@@ -42,15 +42,18 @@ public class ComunicationService implements Service, Runnable {
 
         Set<Beer> beers = grid.getBeersSet();
 
+        String messageBitch = "PUT ";
+
         for (Beer b : beers) {
             int x = b.getX();
             int y = b.getY();
-            printWriter.println("PUT " + x + " " + y);
-            System.out.println("Boat created at " + x + " " + y);
 
+            messageBitch += "" + x + " ";
+            messageBitch += "" + y + " ";
         }
-        printWriter.println("POSITIONRDY");
-        System.out.println("positionrdy sent");
+
+        printWriter.println(messageBitch);
+        System.out.println(messageBitch);
     }
 
     public void sendAttack(int x, int y) {
