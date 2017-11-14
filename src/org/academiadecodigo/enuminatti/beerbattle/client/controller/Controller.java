@@ -51,8 +51,7 @@ public class Controller {
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
-        initialPosition.addA(x);
-        initialPosition.addLast(y);
+
 
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
@@ -93,7 +92,7 @@ public class Controller {
 
 
         comunicationService.sendAttack(x,y);
-        secondGrid.add(new Label("X"),);
+        secondGrid.add(new Label("X"),x ,y) ;
                 //get(x + y).setStyle("-fx-background-color: rebeccapurple");
 
         secondGrid.setVisible(true);
