@@ -17,7 +17,6 @@ public class Grid {
     public Grid() {
         beers = new HashSet<>();
         beersLeft = 14;
-        //controller.setPrimaryGrid(this);
     }
 
     public void setController(Controller controller) {
@@ -26,6 +25,10 @@ public class Grid {
 
     public Set<Beer> getBeersSet() {
         return beers;
+    }
+
+    public int getBeersLeft() {
+        return beersLeft;
     }
 
     public Beer getBeer(int x, int y) {
@@ -51,5 +54,6 @@ public class Grid {
         Beer beer;
         beer = getBeer(x, y);
         beers.remove(beer);
+        beersLeft+=1;
     }
 }

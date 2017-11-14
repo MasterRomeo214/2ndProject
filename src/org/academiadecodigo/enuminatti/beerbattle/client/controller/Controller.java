@@ -59,8 +59,9 @@ public class Controller {
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
+        System.out.println(primaryGrid.getBeersLeft());
 
-        if (!bClicked.isDefaultButton()) {
+        if (!bClicked.isDefaultButton()&&primaryGrid.getBeersLeft()!=1) {
             bClicked.setDefaultButton(true);
             primaryGrid.createBeer(x, y);
             return;
