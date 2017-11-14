@@ -68,7 +68,7 @@ public class Controller {
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
-        if (booleanoDoRomeu) {
+        if (startButton.getText().contains("Send")) {
             if (test) {
                 bClicked.setStyle("-fx-fill: cyan");
                 primaryGrid.createBeer(BeerType.MINI,x,y);
