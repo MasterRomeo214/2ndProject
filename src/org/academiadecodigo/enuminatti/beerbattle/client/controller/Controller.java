@@ -3,17 +3,21 @@ package org.academiadecodigo.enuminatti.beerbattle.client.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Position;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class Controller {
 
-    private int x;
-    private int y;
+    LinkedList<Position> initialPosition;
+    private Integer x;
+    private Integer y;
     private ComunicationService comunicationService;
 
     @FXML
@@ -30,8 +34,9 @@ public class Controller {
 
 
     public Controller() {
-        this.x = 0;
-        this.y = 0;
+      //  this.x = 0;
+      //  this.y = 0;
+        initialPosition = new LinkedList<>();
         try {
             comunicationService = new ComunicationService(8080);
         } catch (IOException e) {
@@ -46,12 +51,8 @@ public class Controller {
 
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
-
-
-
-
-
-
+        initialPosition.addA(x);
+        initialPosition.addLast(y);
 
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
@@ -85,8 +86,16 @@ public class Controller {
 
     @FXML
     void startButtonPressed(MouseEvent event) {
+        //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
+        if (x == null || y == null) {
+            return;
+        }
+
 
         comunicationService.sendAttack(x,y);
+        secondGrid.add(new Label("X"),);
+                //get(x + y).setStyle("-fx-background-color: rebeccapurple");
+
         secondGrid.setVisible(true);
         startButton.setText("Attack");
 
