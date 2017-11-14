@@ -56,34 +56,46 @@ public class Game {
 
     }
 
+
     public void interpretMessage() throws IOException {
 
-        System.out.println("IN");
 
-        String messageP1 = bufferedReaderP1.readLine();
+        System.out.println("Start");
 
-        System.out.println("P1 INTERP");
-
-        String messageP2 = bufferedReaderP2.readLine();
-
-        System.out.println("P2 INTERP");
-
-
+        String messageP1 = "";
+        messageP1= bufferedReaderP1.readLine();
         System.out.println(messageP1);
-        System.out.println(messageP2);
 
-        if (!messageP1.isEmpty()||!messageP2.isEmpty()){
-
-
+        String messageP2 = "";
         String[] splitMessageP1 = messageP1.split(" ");
         String[] splitMessageP2 = messageP2.split(" ");
-
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         receiveLoser(splitMessageP1, splitMessageP2);
-        }
+        readyPlayer(splitMessageP1,splitMessageP2);
 
+
+        messageP2= bufferedReaderP2.readLine();
+        System.out.println(messageP2);
+        messageP1="";
+        splitMessageP1[0]="";
+        splitMessageP2 = messageP2.split(" ");
+
+        createBeers(splitMessageP1, splitMessageP2);
+        sendAttacks(splitMessageP1, splitMessageP2);
+        receiveLoser(splitMessageP1, splitMessageP2);
+        readyPlayer(splitMessageP1,splitMessageP2);
+    }
+
+    private void readyPlayer(String[] splitMessageP1, String[] splitMessageP2) {
+        if (splitMessageP1[0].contains("READY")) {
+            printWriterP2.println("READY");
+            return;
+        }
+        if (splitMessageP2[0].contains("READY")) {
+            printWriterP1.println("READY");
+        }
     }
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
@@ -120,12 +132,12 @@ public class Game {
             int x = Integer.parseInt(splitMessageP1[1]);
             int y = Integer.parseInt(splitMessageP1[2]);
             if (checkIfIsHit(x, y, "p2")) {
-                printWriterP1.write("HIT " + x + " " + y);
-                printWriterP2.write("HITTED " + x + " " + y);
+                printWriterP1.println("HIT " + x + " " + y);
+                printWriterP2.println("HITTED " + x + " " + y);
                 return;
             }
-            printWriterP1.write("MISS " + x + " " + y);
-            printWriterP2.write("MISSED " + x + " " + y);
+            printWriterP1.println("MISS " + x + " " + y);
+            printWriterP2.println("MISSED " + x + " " + y);
         }
 
         if (splitMessageP2[0].contains("ATK")) {
@@ -133,12 +145,12 @@ public class Game {
             int x = Integer.parseInt(splitMessageP2[1]);
             int y = Integer.parseInt(splitMessageP2[2]);
             if (checkIfIsHit(x, y, "p1")) {
-                printWriterP2.write("HIT " + x + " " + y);
-                printWriterP1.write("HITTED " + x + " " + y);
+                printWriterP2.println("HIT " + x + " " + y);
+                printWriterP1.println("HITTED " + x + " " + y);
                 return;
             }
-            printWriterP2.write("MISS " + x + " " + y);
-            printWriterP1.write("MISSED " + x + " " + y);
+            printWriterP2.println("MISS " + x + " " + y);
+            printWriterP1.println("MISSED " + x + " " + y);
         }
     }
 
@@ -171,13 +183,13 @@ public class Game {
 
         if (splitMessageP1[0].contains("LOSER")) {
             endGame = true;
-            printWriterP2.write("WON");
+            printWriterP2.println("WON");
             return;
         }
 
         if (splitMessageP2[0].contains("LOSER")) {
             endGame = true;
-            printWriterP1.write("WON");
+            printWriterP1.println("WON");
             return;
         }
     }

@@ -24,7 +24,6 @@ public class Client extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("view/battlefield.fxml"));
-
         primaryStage.setTitle("BeerBattle");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

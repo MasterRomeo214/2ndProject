@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Position;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ public class Controller {
     private Integer x;
     private Integer y;
     private ComunicationService comunicationService;
+    private Grid primaryGrid;
+    private boolean booleanoDoRomeu;
 
     @FXML
     private GridPane secondGrid;
@@ -34,15 +37,23 @@ public class Controller {
 
 
     public Controller() {
-      //  this.x = 0;
-      //  this.y = 0;
+        //  this.x = 0;
+        //  this.y = 0;
         initialPosition = new LinkedList<>();
+        booleanoDoRomeu = true;
+        this.x = 0;
+        this.y = 0;
         try {
             comunicationService = new ComunicationService(8080);
+            primaryGrid = new Grid();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        comunicationService.setController(this);
+        primaryGrid.setController(this);
     }
+
+    boolean test = false;
 
     @FXML
     void buttonPressed(ActionEvent event) {
@@ -52,16 +63,22 @@ public class Controller {
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
 
-
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
+        if (booleanoDoRomeu) {
+            if (test) {
+                bClicked.setStyle("-fx-fill: cyan");
+                test = false;
+                return;
+            }
 
+        }
     }
 
     public void play() {
 
     }
 
-    public void events(){
+    public void events() {
 
     }
 
@@ -79,8 +96,12 @@ public class Controller {
 
     }
 
-    public void gameLost(){
+    public void gameLost() {
 
+    }
+
+    public void releaseStartButton() {
+        startButton.setDisable(false);
     }
 
     @FXML
@@ -91,22 +112,26 @@ public class Controller {
         }
 
 
-        comunicationService.sendAttack(x,y);
-        secondGrid.add(new Label("X"),x ,y) ;
-                //get(x + y).setStyle("-fx-background-color: rebeccapurple");
+        comunicationService.sendAttack(x, y);
+        secondGrid.add(new Label("X"), x, y);
+        //get(x + y).setStyle("-fx-background-color: rebeccapurple");
 
         secondGrid.setVisible(true);
         startButton.setText("Attack");
 
+        booleanoDoRomeu = false;
+        comunicationService.sendReady();
+        comunicationService.sendAttack(x, y);
+        startButton.setDisable(true);
 
     }
-    public void draw(){
+
+    public void draw() {
 
 
         paneo.setStyle("-fx-background-color: red");
         panet.setStyle("-fx-background-color: red");
     }
-
 
 
 }
