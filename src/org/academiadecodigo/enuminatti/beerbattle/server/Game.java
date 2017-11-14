@@ -105,26 +105,45 @@ public class Game {
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
         if (splitMessageP1[0].contains("PUT")) {
+            int count = 1;
 
-            String typeOfBeer = splitMessageP1[1];
-            BeerType beerType = BeerType.valueOf(typeOfBeer);
-            int x = Integer.parseInt(splitMessageP1[2]);
-            int y = Integer.parseInt(splitMessageP1[3]);
+            while (count < 29) {
+                int x = 0;
+                int y = 0;
 
-            beersPlayerOne.add(new Beer(beerType, x, y));
+                if (count % 2 != 0) {
+                    x = Integer.parseInt(splitMessageP1[count]);
+                    count++;
+
+                }
+                y = Integer.parseInt(splitMessageP1[count]);
+                count++;
+
+                Beer beer = new Beer(x, y);
+                beersPlayerOne.add(beer);
+            }
+
+            if (splitMessageP2[0].contains("PUT")) {
+                int x = 0;
+                int y = 0;
+
+                while (count < 29) {
+
+                    if (count % 2 != 0) {
+                        x = Integer.parseInt(splitMessageP2[count]);
+                        count++;
+
+                    }
+                    y = Integer.parseInt(splitMessageP2[count]);
+                    count++;
+
+                    Beer beer = new Beer(x, y);
+                    beersPlayerTwo.add(beer);
+                }
+            }
         }
-
-        if (splitMessageP2[0].contains("PUT")) {
-
-            String typeOfBeer = splitMessageP2[1];
-            BeerType beerType = BeerType.valueOf(typeOfBeer);
-            int x = Integer.parseInt(splitMessageP2[2]);
-            int y = Integer.parseInt(splitMessageP2[3]);
-
-            beersPlayerTwo.add(new Beer(beerType, x, y));
-        }
-
     }
+
 
     // Method to send attacks through command "ATK"
     // Checks if the attack is successful and answers to players
