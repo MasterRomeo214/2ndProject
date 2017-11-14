@@ -11,8 +11,6 @@ public class Beer {
     private int y;
 
     public Beer(int x, int y) {
-        this.name = beerType.toString();
-        this.beerType = beerType;
         this.x = x;
         this.y = y;
 

@@ -15,12 +15,10 @@ import java.io.IOException;
 
 public class Controller {
 
-    boolean test = false;
     private Integer x;
     private Integer y;
     private ComunicationService comunicationService;
     private Grid primaryGrid;
-    private boolean booleanoDoRomeu;
 
 
     @FXML
@@ -38,7 +36,6 @@ public class Controller {
 
     public Controller() {
 
-        booleanoDoRomeu = true;
         this.x = 0;
         this.y = 0;
         try {
@@ -59,20 +56,18 @@ public class Controller {
     void buttonPressed(ActionEvent event) {
 
         Button bClicked = (Button) event.getSource();
-
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
-        if (!booleanoDoRomeu) {
-            bClicked.setStyle("-fx-background-color:");
+        if (!bClicked.isDefaultButton()) {
+            bClicked.setDefaultButton(true);
             primaryGrid.createBeer(x, y);
-            booleanoDoRomeu = true;
             return;
         }
-        if (booleanoDoRomeu) {
-            bClicked.setStyle("-fx-background-color:aqua ");
-            booleanoDoRomeu = false;
+        if (bClicked.isDefaultButton()) {
+            bClicked.setDefaultButton(false);
+            primaryGrid.deleteBeer(x,y);
         }
 
     }
@@ -111,16 +106,17 @@ public class Controller {
         //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
         if (startButton.getText().contains("Send")) {
 
-            //comunicationService.sendBeers();
-            //return;
+            comunicationService.sendBeers();
+            drawBeers();
+            return;
         }
         if (startButton.getText().contains("Attack")) {
             startButton.setDisable(true);
         }
 
         startButton.setText("Attack");
-        comunicationService.sendReady();
         comunicationService.sendAttack(x, y);
+        comunicationService.sendReady();
     }
 
     public void draw() {

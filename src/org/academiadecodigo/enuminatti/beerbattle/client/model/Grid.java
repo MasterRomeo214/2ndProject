@@ -17,7 +17,7 @@ public class Grid {
     public Grid() {
         beers = new HashSet<>();
         beersLeft = 14;
-        controller.setPrimaryGrid(this);
+        //controller.setPrimaryGrid(this);
     }
 
     public void setController(Controller controller) {

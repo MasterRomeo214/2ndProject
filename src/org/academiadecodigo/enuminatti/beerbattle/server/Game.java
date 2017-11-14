@@ -1,7 +1,6 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,7 +25,6 @@ public class Game {
     private PrintWriter printWriterP1;
     private PrintWriter printWriterP2;
     private boolean endGame;
-    private boolean booleanoDoIvan;
 
 
     public Game(Server server) {
@@ -77,9 +75,6 @@ public class Game {
         readyPlayer(splitMessageP1, splitMessageP2);
 
 
-        if (booleanoDoIvan) {
-
-        }
         messageP2 = bufferedReaderP2.readLine();
         System.out.println(messageP2);
         messageP1 = "";
