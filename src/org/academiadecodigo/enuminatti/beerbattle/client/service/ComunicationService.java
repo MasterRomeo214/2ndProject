@@ -131,6 +131,7 @@ public class ComunicationService implements Service, Runnable {
             try {
                 receiveMessage();
 
+
             } catch (IOException e) {
 
                 e.printStackTrace();

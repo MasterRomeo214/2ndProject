@@ -4,6 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -47,10 +50,10 @@ public class Controller {
     void buttonPressed(ActionEvent event) {
 
         Button bClicked = (Button) event.getSource();
-
-        System.out.println(bClicked.getStyle());
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
+
+        //reference to the clicked position
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
 
         if (!bClicked.isDefaultButton() && primaryGrid.getBeersLeft() != 0) {
@@ -79,28 +82,23 @@ public class Controller {
         }
         if (startButton.getText().contains("Attack")) {
             startButton.setDisable(true);
-
             comunicationService.sendAttack(x, y);
-            startButton.setDisable(true);
-            System.out.println("xico");
-
         }
     }
 
     public void cleanGrid() {
-
 
         for (Node n : mainGrid.getChildren()){
             Button b = (Button) n;
             b.setDefaultButton(false);
 
         }
-
     }
 
     public void play() {
 
     }
+
     // WORK IN PROGRESS!!!
     public void lockButton() {
 
@@ -160,5 +158,25 @@ public class Controller {
         Pane pane = new Pane();
         secondGrid.add(pane, x, y);
         pane.setStyle("-fx-background-color: blue");
+    }
+
+    @FXML
+    private TextArea textArea;
+
+    @FXML
+    private TextField textField;
+
+    @FXML
+    void teste(KeyEvent event) {
+
+    }
+
+    @FXML
+    void textFieldPressed(ActionEvent event) {
+
+        String text = textField.getCharacters().toString();
+        textArea.setText(text);
+        System.out.println(text);
+
     }
 }
