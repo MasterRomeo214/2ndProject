@@ -74,7 +74,7 @@ public class Controller {
             secondGrid.setVisible(true);
             drawBeers();
             startButton.setText("Attack");
-            cleanGrid();
+            //cleanGrid();
             return;
         }
         if (startButton.getText().contains("Attack")) {
@@ -90,6 +90,7 @@ public class Controller {
 
 
         for (Node n : mainGrid.getChildren()) {
+            n.
             //n.setStyle("-fx-background-color: white");
         }
 
