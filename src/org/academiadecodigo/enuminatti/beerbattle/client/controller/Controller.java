@@ -78,12 +78,15 @@ public class Controller {
             return;
         }
         if (startButton.getText().contains("Attack")) {
+
+
             startButton.setDisable(true);
 
         }
 
         comunicationService.sendAttack(x, y);
         comunicationService.sendReady();
+        lockButton();
     }
 
     public void cleanGrid() {
@@ -100,7 +103,16 @@ public class Controller {
     public void play() {
 
     }
+    // WORK IN PROGRESS!!!
+    public void lockButton() {
 
+        for (Node n : mainGrid.getChildren()){
+            Button b = (Button) n;
+            b.setDisable(true);
+
+        }
+    }
+    //
     public void events() {
 
     }
