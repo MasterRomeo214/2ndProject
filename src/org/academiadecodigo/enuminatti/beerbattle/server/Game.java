@@ -72,9 +72,8 @@ public class Game {
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
-        readyPlayer(splitMessageP1, splitMessageP2);
-        if (beersPlayerOne.size()==0){
-        sendLoser(splitMessageP1, splitMessageP2);
+        if (beersPlayerOne.size() == 0) {
+            sendLoser(splitMessageP1, splitMessageP2);
 
         }
 
@@ -88,23 +87,12 @@ public class Game {
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
-        readyPlayer(splitMessageP1, splitMessageP2);
-        if (beersPlayerTwo.size()==0){
+        if (beersPlayerTwo.size() == 0) {
             sendLoser(splitMessageP1, splitMessageP2);
 
         }
 
 
-    }
-
-    private void readyPlayer(String[] splitMessageP1, String[] splitMessageP2) {
-        if (splitMessageP1[0].contains("READY")) {
-            printWriterP2.println("READY");
-            return;
-        }
-        if (splitMessageP2[0].contains("READY")) {
-            printWriterP1.println("READY");
-        }
     }
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {

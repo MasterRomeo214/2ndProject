@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
@@ -78,19 +77,20 @@ public class Controller {
             return;
         }
         if (startButton.getText().contains("Attack")) {
+
+
+            comunicationService.sendAttack(x, y);
             startButton.setDisable(true);
+            System.out.println("xico");
 
         }
-
-        comunicationService.sendAttack(x, y);
-        comunicationService.sendReady();
     }
 
     public void cleanGrid() {
 
 
         for (Node n : mainGrid.getChildren()) {
-            n.
+
             //n.setStyle("-fx-background-color: white");
         }
 

@@ -19,7 +19,6 @@ public class ComunicationService implements Service, Runnable {
     private Controller controller;
     private Grid grid;
 
-
     public ComunicationService(int portNumber, Grid grid) throws IOException {
         this.grid = grid;
         serverSocket = new Socket("localhost", portNumber);
@@ -31,11 +30,6 @@ public class ComunicationService implements Service, Runnable {
 
     public void setController(Controller controller) {
         this.controller = controller;
-    }
-
-    public void sendReady() {
-        printWriter.println("READY");
-        System.out.println("rdy sent");
     }
 
     public void sendBeers() {
@@ -102,12 +96,15 @@ public class ComunicationService implements Service, Runnable {
             case ("HITTED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
+                controller.releaseStartButton();
+
                 //controller.drawHitted(x,y);
                 break;
 
             case ("MISSED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
+                controller.releaseStartButton();
                 //controller.drawMissed(x,y);
                 break;
 
@@ -115,11 +112,6 @@ public class ComunicationService implements Service, Runnable {
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
                 //disconnect();
-                break;
-
-            case ("READY"):
-                System.out.println("ready msg received");
-                controller.releaseStartButton();
                 break;
 
             case ("BOATS READY"):
