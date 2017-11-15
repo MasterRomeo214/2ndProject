@@ -112,6 +112,7 @@ public class ComunicationService implements Service, Runnable {
                 break;
 
             case ("WON"):
+                controller.stopSound();
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
                 //disconnect();

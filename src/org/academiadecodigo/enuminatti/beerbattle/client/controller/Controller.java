@@ -139,6 +139,11 @@ public class Controller {
         return (y == null) ? 0 : y;
     }
 
+
+    public void stopSound(){
+        ambientSound.stop();
+    }
+
     public void gameLost() {
 
     }
