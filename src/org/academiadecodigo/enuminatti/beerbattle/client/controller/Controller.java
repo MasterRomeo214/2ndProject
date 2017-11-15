@@ -2,6 +2,7 @@ package org.academiadecodigo.enuminatti.beerbattle.client.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -20,19 +21,14 @@ public class Controller {
     private ComunicationService comunicationService;
     private Grid primaryGrid;
 
-
     @FXML
     private GridPane secondGrid;
 
     @FXML
+    private GridPane mainGrid;
+
+    @FXML
     private Button startButton;
-
-    @FXML
-    private Pane paneo;
-
-    @FXML
-    private Pane panet;
-
 
     public Controller() {
 
@@ -51,11 +47,11 @@ public class Controller {
         this.primaryGrid = primaryGrid;
     }
 
-
     @FXML
     void buttonPressed(ActionEvent event) {
 
         Button bClicked = (Button) event.getSource();
+
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
@@ -66,11 +62,43 @@ public class Controller {
             primaryGrid.createBeer(x, y);
             return;
         }
+
         if (bClicked.isDefaultButton()) {
             bClicked.setDefaultButton(false);
             primaryGrid.deleteBeer(x,y);
         }
+    }
 
+    @FXML
+    void startButtonPressed(MouseEvent event) {
+        //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
+        if (startButton.getText().contains("Send")) {
+
+            comunicationService.sendBeers();
+            secondGrid.setVisible(true);
+            drawBeers();
+            startButton.setText("Attack");
+            //cleanGrid();
+            return;
+        }
+        if (startButton.getText().contains("Attack")) {
+            startButton.setDisable(true);
+
+        }
+
+        System.out.println("oi");
+        comunicationService.sendAttack(x, y);
+        comunicationService.sendReady();
+    }
+
+    public void cleanGrid() {
+        while(true) {
+            System.out.println("xico");
+            for (Node n: mainGrid.getChildren()) {
+                
+            }
+            //bClicked.setDefaultButton(false);
+        }
     }
 
     public void play() {
@@ -101,32 +129,6 @@ public class Controller {
     public void releaseStartButton() {
         startButton.setDisable(false);
     }
-
-    @FXML
-    void startButtonPressed(MouseEvent event) {
-        //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
-        if (startButton.getText().contains("Send")) {
-
-            comunicationService.sendBeers();
-            drawBeers();
-            return;
-        }
-        if (startButton.getText().contains("Attack")) {
-            startButton.setDisable(true);
-        }
-
-        startButton.setText("Attack");
-        comunicationService.sendAttack(x, y);
-        comunicationService.sendReady();
-    }
-
-    public void draw() {
-
-
-        paneo.setStyle("-fx-background-color: red");
-        panet.setStyle("-fx-background-color: red");
-    }
-
 
     private void drawBeers() {
 

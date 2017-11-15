@@ -78,7 +78,7 @@ public class Game {
         messageP2 = bufferedReaderP2.readLine();
         System.out.println(messageP2);
         messageP1 = "";
-        splitMessageP1[0] = "";
+        splitMessageP1 = messageP1.split(" ");
         splitMessageP2 = messageP2.split(" ");
 
         createBeers(splitMessageP1, splitMessageP2);
@@ -98,11 +98,11 @@ public class Game {
     }
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
-
+        int count = 1;
         if (splitMessageP1[0].contains("PUT")) {
-            int count = 1;
 
             while (count < 29) {
+
                 int x = 0;
                 int y = 0;
 
@@ -115,28 +115,32 @@ public class Game {
                 count++;
 
                 Beer beer = new Beer(x, y);
+                System.out.println("p1 beer created at " + x + " " + y);
                 beersPlayerOne.add(beer);
             }
+        }
 
-            if (splitMessageP2[0].contains("PUT")) {
-                int x = 0;
-                int y = 0;
+        if (splitMessageP2[0].contains("PUT")) {
+            count = 1;
+            int x = 0;
+            int y = 0;
 
-                while (count < 29) {
+            while (count < 29) {
 
-                    if (count % 2 != 0) {
-                        x = Integer.parseInt(splitMessageP2[count]);
-                        count++;
-
-                    }
-                    y = Integer.parseInt(splitMessageP2[count]);
+                if (count % 2 != 0) {
+                    x = Integer.parseInt(splitMessageP2[count]);
                     count++;
 
-                    Beer beer = new Beer(x, y);
-                    beersPlayerTwo.add(beer);
                 }
+                y = Integer.parseInt(splitMessageP2[count]);
+                count++;
+
+                Beer beer = new Beer(x, y);
+                System.out.println("p2 beer created at " + x + " " + y);
+                beersPlayerTwo.add(beer);
             }
         }
+
     }
 
 
