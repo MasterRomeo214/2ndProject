@@ -86,7 +86,7 @@ public class Controller {
 
         comunicationService.sendAttack(x, y);
         comunicationService.sendReady();
-        lockButton();
+        //lockButton();
     }
 
     public void cleanGrid() {
