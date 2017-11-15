@@ -8,6 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
@@ -73,11 +74,11 @@ public class Controller {
             secondGrid.setVisible(true);
             drawBeers();
             startButton.setText("Attack");
-            //cleanGrid();
+            cleanGrid();
             return;
         }
         if (startButton.getText().contains("Attack")) {
-
+            startButton.setDisable(true);
 
             comunicationService.sendAttack(x, y);
             startButton.setDisable(true);
@@ -89,9 +90,10 @@ public class Controller {
     public void cleanGrid() {
 
 
-        for (Node n : mainGrid.getChildren()) {
+        for (Node n : mainGrid.getChildren()){
+            Button b = (Button) n;
+            b.setDefaultButton(false);
 
-            //n.setStyle("-fx-background-color: white");
         }
 
     }
@@ -99,7 +101,16 @@ public class Controller {
     public void play() {
 
     }
+    // WORK IN PROGRESS!!!
+    public void lockButton() {
 
+        for (Node n : mainGrid.getChildren()){
+            Button b = (Button) n;
+            b.setDisable(true);
+
+        }
+    }
+    //
     public void events() {
 
     }
