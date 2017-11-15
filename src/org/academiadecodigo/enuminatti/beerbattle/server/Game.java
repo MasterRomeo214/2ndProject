@@ -1,6 +1,7 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class Game {
     private PrintWriter printWriterP1;
     private PrintWriter printWriterP2;
     private boolean endGame;
+
+    private Sound ambientSound = new Sound("/resources/ambient.wav");
 
 
     public Game(Server server) {
@@ -58,6 +61,7 @@ public class Game {
 
     public void interpretMessage() throws IOException {
 
+        ambientSound.play(true);
 
         System.out.println("Start");
 
@@ -74,6 +78,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         readyPlayer(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size()==0){
+           // ambientSound.stop();
         sendLoser(splitMessageP1, splitMessageP2);
 
         }
@@ -90,9 +95,11 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         readyPlayer(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size()==0){
+           // ambientSound.stop();
             sendLoser(splitMessageP1, splitMessageP2);
 
         }
+
 
 
     }
