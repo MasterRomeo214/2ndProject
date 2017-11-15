@@ -62,29 +62,39 @@ public class Game {
         System.out.println("Start");
 
         String messageP1 = "";
+        String messageP2 = "";
+
         messageP1 = bufferedReaderP1.readLine();
         System.out.println(messageP1);
 
-        String messageP2 = "";
         String[] splitMessageP1 = messageP1.split(" ");
         String[] splitMessageP2 = messageP2.split(" ");
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
-        receiveLoser(splitMessageP1, splitMessageP2);
+        if (beersPlayerOne.size()==0){
+        sendLoser(splitMessageP1, splitMessageP2);
+
+        }
         readyPlayer(splitMessageP1, splitMessageP2);
 
 
         messageP2 = bufferedReaderP2.readLine();
         System.out.println(messageP2);
+
         messageP1 = "";
         splitMessageP1 = messageP1.split(" ");
         splitMessageP2 = messageP2.split(" ");
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
-        receiveLoser(splitMessageP1, splitMessageP2);
+        if (beersPlayerTwo.size()==0){
+            sendLoser(splitMessageP1, splitMessageP2);
+
+        }
         readyPlayer(splitMessageP1, splitMessageP2);
+
+
     }
 
     private void readyPlayer(String[] splitMessageP1, String[] splitMessageP2) {
@@ -98,8 +108,8 @@ public class Game {
     }
 
     private void createBeers(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
-        int count = 1;
         if (splitMessageP1[0].contains("PUT")) {
+            int count = 1;
 
             while (count < 29) {
 
@@ -118,10 +128,12 @@ public class Game {
                 System.out.println("p1 beer created at " + x + " " + y);
                 beersPlayerOne.add(beer);
             }
+            printWriterP1.println("BOATS READY");
+            return;
         }
 
         if (splitMessageP2[0].contains("PUT")) {
-            count = 1;
+            int count = 1;
             int x = 0;
             int y = 0;
 
@@ -139,7 +151,9 @@ public class Game {
                 System.out.println("p2 beer created at " + x + " " + y);
                 beersPlayerTwo.add(beer);
             }
+            printWriterP2.println("BOATS READY");
         }
+
 
     }
 
@@ -186,14 +200,17 @@ public class Game {
             for (Beer b : beersPlayerTwo) {
                 if (b.getX() == x && b.getY() == y) {
                     System.out.println(player + " was hit");
+                    beersPlayerTwo.remove(b);
                     return true;
                 }
 
             }
-        } else if (player.equals("p1")) {
+        }
+        if (player.equals("p1")) {
             for (Beer b : beersPlayerOne) {
                 if (b.getX() == x && b.getY() == y) {
                     System.out.println(player + " was hit");
+                    beersPlayerOne.remove(b);
                     return true;
                 }
             }
@@ -201,15 +218,15 @@ public class Game {
         return false;
     }
 
-    private void receiveLoser(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
+    private void sendLoser(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
 
-        if (splitMessageP1[0].contains("LOSER")) {
+        if (beersPlayerOne.size()==0) {
             endGame = true;
             printWriterP2.println("WON");
             return;
         }
 
-        if (splitMessageP2[0].contains("LOSER")) {
+        if (beersPlayerTwo.size()==0) {
             endGame = true;
             printWriterP1.println("WON");
             return;

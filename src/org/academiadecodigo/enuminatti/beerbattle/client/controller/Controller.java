@@ -43,21 +43,17 @@ public class Controller {
         }
     }
 
-    public void setPrimaryGrid(Grid primaryGrid) {
-        this.primaryGrid = primaryGrid;
-    }
-
     @FXML
     void buttonPressed(ActionEvent event) {
 
         Button bClicked = (Button) event.getSource();
 
+        System.out.println(bClicked.getStyle());
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
         System.out.println(getPositionX(bClicked) + " " + getPositionY(bClicked));
-        System.out.println(primaryGrid.getBeersLeft());
 
-        if (!bClicked.isDefaultButton()&&primaryGrid.getBeersLeft()!=1) {
+        if (!bClicked.isDefaultButton() && primaryGrid.getBeersLeft() != 0) {
             bClicked.setDefaultButton(true);
             primaryGrid.createBeer(x, y);
             return;
@@ -65,7 +61,7 @@ public class Controller {
 
         if (bClicked.isDefaultButton()) {
             bClicked.setDefaultButton(false);
-            primaryGrid.deleteBeer(x,y);
+            primaryGrid.deleteBeer(x, y);
         }
     }
 
@@ -78,7 +74,7 @@ public class Controller {
             secondGrid.setVisible(true);
             drawBeers();
             startButton.setText("Attack");
-            //cleanGrid();
+            cleanGrid();
             return;
         }
         if (startButton.getText().contains("Attack")) {
@@ -86,19 +82,17 @@ public class Controller {
 
         }
 
-        System.out.println("oi");
         comunicationService.sendAttack(x, y);
         comunicationService.sendReady();
     }
 
     public void cleanGrid() {
-        while(true) {
-            System.out.println("xico");
-            for (Node n: mainGrid.getChildren()) {
-                
-            }
-            //bClicked.setDefaultButton(false);
+
+
+        for (Node n : mainGrid.getChildren()) {
+            //n.setStyle("-fx-background-color: white");
         }
+
     }
 
     public void play() {
@@ -132,7 +126,6 @@ public class Controller {
 
     private void drawBeers() {
 
-
         for (Beer b : primaryGrid.getBeersSet()) {
 
             int x = b.getX();
@@ -141,5 +134,19 @@ public class Controller {
             secondGrid.add(pane, x, y);
             pane.setStyle("-fx-background-color: green");
         }
+    }
+
+    public void drawHitted(int x, int y) {
+        Pane pane = new Pane();
+        secondGrid.getChildren().get(1).setStyle("-fx-background-color: red");
+        secondGrid.add(pane, x, y);
+        pane.setStyle("-fx-background-color: crimson");
+
+    }
+
+    public void drawMissed(int x, int y) {
+        Pane pane = new Pane();
+        secondGrid.add(pane, x, y);
+        pane.setStyle("-fx-background-color: blue");
     }
 }

@@ -16,7 +16,7 @@ public class Grid {
 
     public Grid() {
         beers = new HashSet<>();
-        beersLeft = 15;
+        beersLeft = 14;
     }
 
     public void setController(Controller controller) {

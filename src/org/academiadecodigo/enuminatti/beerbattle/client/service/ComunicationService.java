@@ -80,10 +80,9 @@ public class ComunicationService implements Service, Runnable {
         int y = 0;
         String messageFromServer = "";
 
-        System.out.println("From other player " + messageFromServer);
-        String[] splitMessage;
         messageFromServer = bufferedReader.readLine();
-        splitMessage = messageFromServer.split(" ");
+
+        String[] splitMessage = messageFromServer.split(" ");
 
         switch (splitMessage[0]) {
 
@@ -103,23 +102,28 @@ public class ComunicationService implements Service, Runnable {
             case ("HITTED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showDamageOnSecundaryGrid(x, y);
+                //controller.drawHitted(x,y);
                 break;
 
             case ("MISSED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showWaterOnSecundaryGrid(x, y);
+                //controller.drawMissed(x,y);
                 break;
 
             case ("WON"):
                 //game ends and view updates with winner message
+                System.out.println("ganhaste!!!!!!!!!!");
                 disconnect();
                 break;
 
             case ("READY"):
                 System.out.println("ready msg received");
                 controller.releaseStartButton();
+                break;
+
+            case ("BOATS READY"):
+                System.out.println("boats rdy");
                 break;
 
             default:
