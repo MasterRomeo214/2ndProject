@@ -175,7 +175,8 @@ public class Controller {
     void textFieldPressed(ActionEvent event) {
 
         String text = textField.getCharacters().toString();
-        textArea.setText(text);
+
+        textArea.nextWord();
         System.out.println(text);
 
     }
