@@ -11,6 +11,7 @@ import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
+import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
 import java.io.IOException;
 
@@ -20,6 +21,10 @@ public class Controller {
     private Integer y;
     private ComunicationService comunicationService;
     private Grid primaryGrid;
+
+    private Sound ambientSound = new Sound("/resources/ambient.wav");
+
+
 
     @FXML
     private GridPane secondGrid;
@@ -32,12 +37,16 @@ public class Controller {
 
     public Controller() {
 
+
         this.x = 0;
         this.y = 0;
         try {
             primaryGrid = new Grid();
             comunicationService = new ComunicationService(8080, primaryGrid);
             comunicationService.setController(this);
+
+            ambientSound.play(true);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
