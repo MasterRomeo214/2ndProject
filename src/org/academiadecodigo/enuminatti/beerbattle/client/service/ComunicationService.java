@@ -114,7 +114,7 @@ public class ComunicationService implements Service, Runnable {
             case ("WON"):
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
-                disconnect();
+                //disconnect();
                 break;
 
             case ("READY"):

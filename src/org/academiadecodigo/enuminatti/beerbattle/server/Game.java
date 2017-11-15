@@ -72,11 +72,11 @@ public class Game {
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
+        readyPlayer(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size()==0){
         sendLoser(splitMessageP1, splitMessageP2);
 
         }
-        readyPlayer(splitMessageP1, splitMessageP2);
 
 
         messageP2 = bufferedReaderP2.readLine();
@@ -88,11 +88,11 @@ public class Game {
 
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
+        readyPlayer(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size()==0){
             sendLoser(splitMessageP1, splitMessageP2);
 
         }
-        readyPlayer(splitMessageP1, splitMessageP2);
 
 
     }
