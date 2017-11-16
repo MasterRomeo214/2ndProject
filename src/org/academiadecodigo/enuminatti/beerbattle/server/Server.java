@@ -27,6 +27,7 @@ public class Server {
 
             try {
                 game.interpretMessage();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
