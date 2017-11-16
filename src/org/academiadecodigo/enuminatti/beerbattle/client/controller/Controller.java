@@ -212,7 +212,8 @@ public class Controller {
 
         String text = textField.getCharacters().toString();
 
-        textArea.nextWord();
+
+        textArea.appendText(text+"\n");
         System.out.println(text);
 
     }

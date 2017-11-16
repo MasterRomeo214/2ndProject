@@ -6,6 +6,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
@@ -235,6 +238,38 @@ public class Game {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void chat() {
+
+        try {
+
+            DatagramSocket serverSocket = new DatagramSocket(8070);
+
+            byte[] sendBuffer;
+            byte[] recvBuffer = new byte[1024];
+
+
+            DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
+            serverSocket.receive(receivePacket);
+
+            String phrase = new String(receivePacket.getData());
+            System.out.println(phrase);
+
+            InetAddress IPAddress = receivePacket.getAddress();
+            int port = receivePacket.getPort();
+            String UpPhrase = phrase.toUpperCase();
+
+            sendBuffer = UpPhrase.getBytes();
+
+            DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, IPAddress, port);
+            serverSocket.send(sendPacket);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }
 

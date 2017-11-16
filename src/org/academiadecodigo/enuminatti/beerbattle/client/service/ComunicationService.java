@@ -5,7 +5,11 @@ import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 
 import java.io.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -84,27 +88,27 @@ public class ComunicationService implements Service, Runnable {
             case ("HIT"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                controller.drawHit(x,y);
+                controller.drawHit(x, y);
                 break;
 
             case ("MISS"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                controller.drawMiss(x,y);
+                controller.drawMiss(x, y);
                 break;
 
             case ("HITTED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
-                controller.drawHitted(x,y);
+                controller.drawHitted(x, y);
                 break;
 
             case ("MISSED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
-                controller.drawMissed(x,y);
+                controller.drawMissed(x, y);
                 break;
 
             case ("WON"):
@@ -123,6 +127,48 @@ public class ComunicationService implements Service, Runnable {
 
         }
     }
+
+    public void chat() {
+
+        try {
+
+            String phrase;
+            int portNumber = Integer.parseInt("7070");
+
+            Scanner scanner = new Scanner(System.in);
+
+            DatagramSocket serverSocket = new DatagramSocket(portNumber);
+
+            byte[] sendBuffer;
+            byte[] recvBuffer = new byte[1024];
+
+            phrase = scanner.nextLine();
+
+            sendBuffer = phrase.getBytes();
+
+            DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length,
+                    InetAddress.getLocalHost(), 8080);
+
+            serverSocket.send(sendPacket);
+
+            DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
+
+            serverSocket.receive(receivePacket);
+
+            String badjoraz = new String(receivePacket.getData());
+            badjoraz = badjoraz.replaceAll("\u0000", "");
+
+            System.out.println("From server : " + badjoraz);
+            serverSocket.close();
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
+
+
+
+    
 
     @Override
     public void run() {
