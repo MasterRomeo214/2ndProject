@@ -64,13 +64,13 @@ public class Controller {
             primaryGrid.deleteBeer(x, y);
         }
 
-        if (startButton.getText().contains("Send")&&primaryGrid.getBeersLeft()==0){
+        if (startButton.getText().contains("Send") && primaryGrid.getBeersLeft() == 0) {
             startButton.setDisable(false);
         }
     }
 
-    public void checkoIfBeerRemain(){
-        while (primaryGrid.getBeersLeft() > 0){
+    public void checkoIfBeerRemain() {
+        while (primaryGrid.getBeersLeft() > 0) {
             startButton.setDisable(true);
         }
         startButton.setDisable(false);
@@ -93,10 +93,11 @@ public class Controller {
 
 
             if (comunicationService.getPlayer() == 0) {
+                System.out.println("eu tenho um penis grande");
                 startButton.setDisable(true);
                 comunicationService.setPlayer(1);
-                //return;
             }
+                return;
         }
 
         if (startButton.getText().contains("Attack")) {
@@ -159,7 +160,7 @@ public class Controller {
 
             for (Node n : secondGrid.getChildren()) {
                 if (n.getId() != null && n.getId().equals(beerId)) {
-                    n.setStyle("-fx-background-color: yellow");
+                    n.setStyle("-fx-background-image:url('beerCap.jpg')");
 
                 }
             }
@@ -171,7 +172,7 @@ public class Controller {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: beer");
+                n.setStyle("-fx-background-image: url('beer.jpg')");
             }
         }
     }
@@ -180,7 +181,8 @@ public class Controller {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: Water");
+                n.setStyle("-fx-background-image: url('Water.jpg')");
+
             }
         }
     }
@@ -189,7 +191,7 @@ public class Controller {
         String mockId = "p" + x + y;
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: url('beerCap.jpg')");
+                n.setStyle("-fx-background-image: url('beerCapHit.jpg')");
             }
 
         }
@@ -200,7 +202,7 @@ public class Controller {
         String mockId = "p" + x + y;
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: waterCap");
+                n.setStyle("-fx-background-image: url('waterCap.jpg')");
             }
 
         }
