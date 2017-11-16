@@ -17,7 +17,7 @@ import java.util.LinkedList;
  * Created by codecadet on 07/11/17.
  */
 public class Game {
-    //array of players
+
     private Socket socketP1;
     private Socket socketP2;
     private LinkedList<Beer> beersPlayerOne;
@@ -49,6 +49,7 @@ public class Game {
             socketP1 = socket;
             bufferedReaderP1 = new BufferedReader(new InputStreamReader(socketP1.getInputStream()));
             printWriterP1 = new PrintWriter(socketP1.getOutputStream(), true);
+            printWriterP1.println("PLAYER1");
             return;
         }
 
@@ -76,10 +77,9 @@ public class Game {
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size() == 0) {
-            sendLoser(splitMessageP1, splitMessageP2);
+            sendLoser();
 
         }
-
 
         messageP2 = bufferedReaderP2.readLine();
         System.out.println(messageP2);
@@ -91,7 +91,7 @@ public class Game {
         createBeers(splitMessageP1, splitMessageP2);
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size() == 0) {
-            sendLoser(splitMessageP1, splitMessageP2);
+            sendLoser();
 
         }
 
@@ -119,7 +119,6 @@ public class Game {
                 System.out.println("p1 beer created at " + x + " " + y);
                 beersPlayerOne.add(beer);
             }
-            printWriterP1.println("BOATS READY");
             return;
         }
 
@@ -142,10 +141,7 @@ public class Game {
                 System.out.println("p2 beer created at " + x + " " + y);
                 beersPlayerTwo.add(beer);
             }
-            printWriterP2.println("BOATS READY");
         }
-
-
     }
 
 
@@ -183,7 +179,6 @@ public class Game {
 
 
     // <3 method to confirm if beer has been hit by players
-
     private boolean checkIfIsHit(int x, int y, String player) {
 
 
@@ -209,18 +204,20 @@ public class Game {
         return false;
     }
 
-    private void sendLoser(String[] splitMessageP1, String[] splitMessageP2) throws IOException {
+    private void sendLoser() throws IOException {
 
         if (beersPlayerOne.size()==0) {
             endGame = true;
             printWriterP2.println("WON");
+            printWriterP1.println("LOSER");
             return;
         }
 
         if (beersPlayerTwo.size()==0) {
             endGame = true;
             printWriterP1.println("WON");
-            return;
+            printWriterP2.println("LOSER");
+
         }
     }
 
@@ -240,39 +237,4 @@ public class Game {
         }
     }
 
-    public void chat() {
-
-        try {
-
-            DatagramSocket serverSocket = new DatagramSocket(8070);
-
-            byte[] sendBuffer;
-            byte[] recvBuffer = new byte[1024];
-
-
-            DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
-            serverSocket.receive(receivePacket);
-
-            String phrase = new String(receivePacket.getData());
-            System.out.println(phrase);
-
-            InetAddress IPAddress = receivePacket.getAddress();
-            int port = receivePacket.getPort();
-            String UpPhrase = phrase.toUpperCase();
-
-            sendBuffer = UpPhrase.getBytes();
-
-            DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length, IPAddress, port);
-            serverSocket.send(sendPacket);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
 }
-
-
-
-

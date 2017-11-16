@@ -22,6 +22,7 @@ public class ComunicationService implements Service, Runnable {
     private PrintWriter printWriter;
     private Controller controller;
     private Grid grid;
+    private int player;
 
     public ComunicationService(int portNumber, Grid grid) throws IOException {
         this.grid = grid;
@@ -30,6 +31,16 @@ public class ComunicationService implements Service, Runnable {
         printWriter = new PrintWriter(serverSocket.getOutputStream(), true);
         Thread thread = new Thread(this);
         thread.start();
+        player = 0;
+    }
+
+    public void setPlayer(int player) {
+        this.player = player;
+    }
+
+    public int getPlayer() {
+
+        return player;
     }
 
     public void setController(Controller controller) {
@@ -40,29 +51,24 @@ public class ComunicationService implements Service, Runnable {
 
         Set<Beer> beers = grid.getBeersSet();
 
-        String messageBitch = "PUT ";
+        String message = "PUT ";
 
         for (Beer b : beers) {
             int x = b.getX();
             int y = b.getY();
 
-            messageBitch += "" + x + " ";
-            messageBitch += "" + y + " ";
+            message += "" + x + " ";
+            message += "" + y + " ";
         }
 
-        printWriter.println(messageBitch);
-        System.out.println(messageBitch);
+        printWriter.println(message);
+        System.out.println(message);
     }
 
     public void sendAttack(int x, int y) {
 
         printWriter.println("ATK " + x + " " + y);
         System.out.println("Attack sent to " + x + " " + y);
-    }
-
-    public void sendLoser() {
-
-        printWriter.println("LOSER");
     }
 
     public void disconnect() throws IOException {
@@ -111,71 +117,31 @@ public class ComunicationService implements Service, Runnable {
                 controller.drawMissed(x, y);
                 break;
 
+            case ("PLAYER1"):
+                player = 1;
+                break;
+
             case ("WON"):
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
                 //disconnect();
                 break;
 
-            case ("BOATS READY"):
-                System.out.println("boats rdy");
+            case ("LOSER"):
+                System.out.println("perdeste!!!!!!!!");
                 break;
 
             default:
                 System.out.println("This wasn't supposed to happen ;)");
                 break;
-
         }
     }
-
-    public void chat() {
-
-        try {
-
-            String phrase;
-            int portNumber = Integer.parseInt("7070");
-
-            Scanner scanner = new Scanner(System.in);
-
-            DatagramSocket serverSocket = new DatagramSocket(portNumber);
-
-            byte[] sendBuffer;
-            byte[] recvBuffer = new byte[1024];
-
-            phrase = scanner.nextLine();
-
-            sendBuffer = phrase.getBytes();
-
-            DatagramPacket sendPacket = new DatagramPacket(sendBuffer, sendBuffer.length,
-                    InetAddress.getLocalHost(), 8080);
-
-            serverSocket.send(sendPacket);
-
-            DatagramPacket receivePacket = new DatagramPacket(recvBuffer, recvBuffer.length);
-
-            serverSocket.receive(receivePacket);
-
-            String badjoraz = new String(receivePacket.getData());
-            badjoraz = badjoraz.replaceAll("\u0000", "");
-
-            System.out.println("From server : " + badjoraz);
-            serverSocket.close();
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-    }
-
-
-
-    
 
     @Override
     public void run() {
         while (true) {
             try {
                 receiveMessage();
-
 
             } catch (IOException e) {
 

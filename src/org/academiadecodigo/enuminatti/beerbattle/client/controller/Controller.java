@@ -78,6 +78,10 @@ public class Controller {
             drawBeers();
             startButton.setText("Attack");
             cleanGrid();
+        if (comunicationService.getPlayer()==0){
+            startButton.setDisable(true);
+            comunicationService.setPlayer(1);
+        }
             return;
         }
         if (startButton.getText().contains("Attack")) {
@@ -211,7 +215,6 @@ public class Controller {
     void textFieldPressed(ActionEvent event) {
 
         String text = textField.getCharacters().toString();
-
 
         textArea.appendText(text+"\n");
         System.out.println(text);
