@@ -97,7 +97,7 @@ public class Controller {
                 startButton.setDisable(true);
                 comunicationService.setPlayer(1);
             }
-                return;
+            return;
         }
 
         if (startButton.getText().contains("Attack")) {
@@ -173,6 +173,8 @@ public class Controller {
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-image: url('beer.jpg')");
+                n.setDisable(true);
+
             }
         }
     }
@@ -182,6 +184,7 @@ public class Controller {
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-image: url('Water.jpg')");
+                n.setDisable(true);
 
             }
         }
@@ -192,6 +195,8 @@ public class Controller {
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-image: url('beerCapHit.jpg')");
+                n.setDisable(true);
+
             }
 
         }
@@ -203,6 +208,8 @@ public class Controller {
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-image: url('waterCap.jpg')");
+                n.setDisable(true);
+
             }
 
         }
