@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -131,7 +132,6 @@
          </children>
 
       </GridPane>
-      <TextArea fx:id="textArea" editable="false" layoutX="359.0" layoutY="200.0" prefHeight="79.0" prefWidth="192.0" />
-      <TextField fx:id="textField" layoutX="359.0" layoutY="287.0" onAction="#textFieldPressed" onKeyPressed="#teste" prefHeight="27.0" prefWidth="192.0" />
+      <Label fx:id="label" alignment="CENTER" layoutX="343.0" layoutY="212.0" prefHeight="47.0" prefWidth="187.0" text="L" />
    </children>
 </Pane>

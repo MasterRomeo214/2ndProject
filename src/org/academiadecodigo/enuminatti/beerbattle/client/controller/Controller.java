@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -79,7 +80,7 @@ public class Controller {
 
     @FXML
     void startButtonPressed(MouseEvent event) {
-        //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
+
         if (startButton.getText().contains("Send")) {
 
             comunicationService.sendBeers();
@@ -88,12 +89,16 @@ public class Controller {
             introF.play(true);
             startButton.setText("Attack");
             cleanGrid();
-        if (comunicationService.getPlayer()==0){
-            startButton.setDisable(true);
-            comunicationService.setPlayer(1);
+            label.setText("jhfjhga");
+
+
+            if (comunicationService.getPlayer() == 0) {
+                startButton.setDisable(true);
+                comunicationService.setPlayer(1);
+                return;
+            }
         }
-            return;
-        }
+
         if (startButton.getText().contains("Attack")) {
             startButton.setDisable(true);
             comunicationService.sendAttack(x, y);
@@ -113,9 +118,10 @@ public class Controller {
     public void lockButton() {
         int count = 0;
 
-        for (Node n : mainGrid.getChildren()){
+        for (Node n : secondGrid.getChildren()) {
             Button b = (Button) n;
-            b.setDisable(true);
+            b.setId("" + count);
+            count++;
 
         }
     }
@@ -156,7 +162,6 @@ public class Controller {
                     n.setStyle("-fx-background-color: yellow");
 
                 }
-
             }
         }
     }
@@ -171,8 +176,8 @@ public class Controller {
 
 
     public void drawHit(int x, int y) {
-        String mockId = "b"+x+y;
-        for (Node n: mainGrid.getChildren()) {
+        String mockId = "b" + x + y;
+        for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-color: indianred");
             }
@@ -180,8 +185,8 @@ public class Controller {
     }
 
     public void drawMiss(int x, int y) {
-        String mockId = "b"+x+y;
-        for (Node n: mainGrid.getChildren()) {
+        String mockId = "b" + x + y;
+        for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-color: aqua");
             }
@@ -202,26 +207,13 @@ public class Controller {
     }
 
     @FXML
-    private TextArea textArea;
-
+    private Label label;
     @FXML
-    private TextField textField;
-
+    private GridPane secondGrid;
     @FXML
-    void teste(KeyEvent event) {
-
-    }
-
+    private GridPane mainGrid;
     @FXML
-    void textFieldPressed(ActionEvent event) {
-
-        String text = textField.getCharacters().toString();
-
-        textArea.appendText(text+"\n");
-        System.out.println(text);
-
-    }
-
+    private Button startButton;
     @FXML
     private Pane p00;
     @FXML

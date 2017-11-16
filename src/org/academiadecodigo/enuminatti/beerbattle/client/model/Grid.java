@@ -10,17 +10,12 @@ import java.util.Set;
  */
 public class Grid {
 
-    private Controller controller;
     private Set<Beer> beers;
     private int beersLeft;
 
     public Grid() {
         beers = new HashSet<>();
         beersLeft = 14;
-    }
-
-    public void setController(Controller controller) {
-        this.controller = controller;
     }
 
     public Set<Beer> getBeersSet() {
