@@ -19,7 +19,6 @@ public class ComunicationService implements Service, Runnable {
     private Controller controller;
     private Grid grid;
 
-
     public ComunicationService(int portNumber, Grid grid) throws IOException {
         this.grid = grid;
         serverSocket = new Socket("localhost", portNumber);
@@ -31,11 +30,6 @@ public class ComunicationService implements Service, Runnable {
 
     public void setController(Controller controller) {
         this.controller = controller;
-    }
-
-    public void sendReady() {
-        printWriter.println("READY");
-        System.out.println("rdy sent");
     }
 
     public void sendBeers() {
@@ -62,11 +56,6 @@ public class ComunicationService implements Service, Runnable {
         System.out.println("Attack sent to " + x + " " + y);
     }
 
-    public void sendLoser() {
-
-        printWriter.println("LOSER");
-    }
-
     public void disconnect() throws IOException {
 
         bufferedReader.close();
@@ -90,37 +79,34 @@ public class ComunicationService implements Service, Runnable {
             case ("HIT"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showHitOnMainGrid(x, y);
+                controller.drawHit(x,y);
                 break;
 
             case ("MISS"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showMissOnMainGrid(x, y);
+                controller.drawMiss(x,y);
                 break;
 
             case ("HITTED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //controller.drawHitted(x,y);
+                controller.releaseStartButton();
+                controller.drawHitted(x,y);
                 break;
 
             case ("MISSED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //controller.drawMissed(x,y);
+                controller.releaseStartButton();
+                controller.drawMissed(x,y);
                 break;
 
             case ("WON"):
                 controller.stopSound();
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
-                //disconnect();
-                break;
-
-            case ("READY"):
-                System.out.println("ready msg received");
-                controller.releaseStartButton();
+                disconnect();
                 break;
 
             case ("BOATS READY"):
@@ -139,6 +125,7 @@ public class ComunicationService implements Service, Runnable {
         while (true) {
             try {
                 receiveMessage();
+
 
             } catch (IOException e) {
 
