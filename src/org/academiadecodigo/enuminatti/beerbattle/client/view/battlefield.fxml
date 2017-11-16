@@ -28,46 +28,46 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="button00" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" />
-            <Button fx:id="button1" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" />
-            <Button fx:id="button2" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" />
-            <Button fx:id="button3" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" />
-            <Button fx:id="button4" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" />
-            <Button fx:id="button5" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" />
-            <Button fx:id="button6" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="1" />
-            <Button fx:id="button7" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="button8" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Button fx:id="button9" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Button fx:id="button10" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Button fx:id="button11" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
-            <Button fx:id="button12" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="2" />
-            <Button fx:id="button13" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="button14" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="button15" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <Button fx:id="button16" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <Button fx:id="button17" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-            <Button fx:id="button18" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="3" />
-            <Button fx:id="button19" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="button20" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button fx:id="button21" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Button fx:id="button22" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <Button fx:id="button23" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-            <Button fx:id="button24" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="4" />
-            <Button fx:id="button25" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Button fx:id="button26" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button fx:id="button27" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Button fx:id="button28" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <Button fx:id="button29" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
-            <Button fx:id="button30" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="5" />
-            <Button fx:id="button31" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Button fx:id="button32" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="button33" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Button fx:id="button34" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Button fx:id="button35" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <Button fx:id="b00" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" />
+            <Button fx:id="b10" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" />
+            <Button fx:id="b20" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" />
+            <Button fx:id="b30" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" />
+            <Button fx:id="b40" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" />
+            <Button fx:id="b50" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" />
+            <Button fx:id="b01" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="1" />
+            <Button fx:id="b11" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="b21" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button fx:id="b31" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button fx:id="b41" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="b51" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Button fx:id="b02" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="2" />
+            <Button fx:id="b12" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="b22" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="b32" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="b42" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button fx:id="b52" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Button fx:id="b03" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="3" />
+            <Button fx:id="b13" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="b23" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="b33" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button fx:id="b43" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Button fx:id="b53" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Button fx:id="b04" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="4" />
+            <Button fx:id="b14" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Button fx:id="b24" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="b34" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button fx:id="b44" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Button fx:id="b54" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Button fx:id="b05" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.rowIndex="5" />
+            <Button fx:id="b15" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Button fx:id="b25" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="b35" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Button fx:id="b45" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Button fx:id="b55" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="42.0" prefWidth="43.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Button fx:id="startButton" layoutX="146.0" layoutY="343.0" mnemonicParsing="false" onMouseClicked="#startButtonPressed" text="Send" />
-      <GridPane fx:id="secondGrid" gridLinesVisible="true" layoutX="404.0" layoutY="33.0" prefHeight="117.0" prefWidth="147.0" style="-fx-background-color: #ffff;" visible="false">
+      <GridPane fx:id="secondGrid" gridLinesVisible="true" layoutX="404.0" layoutY="33.0" prefHeight="117.0" prefWidth="147.0" style="-fx-background-color: #ffff;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,8 +85,42 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Pane fx:id="panet" prefHeight="200.0" prefWidth="200.0" />
-            <Pane fx:id="paneo" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <Pane fx:id="p00" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="p10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <Pane fx:id="p20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+            <Pane fx:id="p30" layoutX="58.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" />
+            <Pane fx:id="p40" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" />
+            <Pane fx:id="p50" layoutX="107.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" />
+            <Pane fx:id="p01" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Pane fx:id="p11" layoutX="10.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Pane fx:id="p21" layoutX="34.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Pane fx:id="p31" layoutX="58.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Pane fx:id="p41" layoutX="82.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Pane fx:id="p51" layoutX="107.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Pane fx:id="p02" layoutX="132.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+            <Pane fx:id="p12" layoutX="10.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Pane fx:id="p22" layoutX="34.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane fx:id="p32" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Pane fx:id="p42" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Pane fx:id="p52" layoutX="107.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Pane fx:id="p03" layoutX="132.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+            <Pane fx:id="p13" layoutX="10.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Pane fx:id="p23" layoutX="34.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Pane fx:id="p33" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Pane fx:id="p43" layoutX="82.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Pane fx:id="p53" layoutX="107.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Pane fx:id="p04" layoutX="132.0" layoutY="67.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+            <Pane fx:id="p14" layoutX="10.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Pane fx:id="p24" layoutX="34.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Pane fx:id="p34" layoutX="58.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Pane fx:id="p44" layoutX="82.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <Pane fx:id="p54" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <Pane fx:id="p05" layoutX="132.0" layoutY="87.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5" />
+            <Pane fx:id="p15" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Pane fx:id="p25" layoutX="34.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Pane fx:id="p35" layoutX="58.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Pane fx:id="p45" layoutX="82.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <Pane fx:id="p55" layoutX="107.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
          </children>
 
       </GridPane>

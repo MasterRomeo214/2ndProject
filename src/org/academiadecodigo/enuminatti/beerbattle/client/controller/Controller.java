@@ -88,7 +88,7 @@ public class Controller {
 
     public void cleanGrid() {
 
-        for (Node n : mainGrid.getChildren()){
+        for (Node n : mainGrid.getChildren()) {
             Button b = (Button) n;
             b.setDefaultButton(false);
 
@@ -101,13 +101,16 @@ public class Controller {
 
     // WORK IN PROGRESS!!!
     public void lockButton() {
+        int count = 0;
 
-        for (Node n : mainGrid.getChildren()){
+        for (Node n : secondGrid.getChildren()) {
             Button b = (Button) n;
-            b.setDisable(true);
+            b.setId("" + count);
+            count++;
 
         }
     }
+
     //
     public void events() {
 
@@ -140,24 +143,57 @@ public class Controller {
 
             int x = b.getX();
             int y = b.getY();
-            Pane pane = new Pane();
+
+            String beerId = "p" + x + y;
+
+            for (Node n : secondGrid.getChildren()) {
+                if (n.getId() != null && n.getId().equals(beerId)) {
+                    n.setStyle("-fx-background-color: yellow");
+
+                }
+            /* Pane pane = new Pane();
             secondGrid.add(pane, x, y);
-            pane.setStyle("-fx-background-color: green");
+            pane.setStyle("-fx-background-color: green"); */
+            }
         }
     }
 
     public void drawHitted(int x, int y) {
-        Pane pane = new Pane();
-        secondGrid.getChildren().get(1).setStyle("-fx-background-color: red");
-        secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-color: crimson");
+        String mockId = "p" + x + y;
+        for (Node n : secondGrid.getChildren()) {
+            if (n.getId() != null && n.getId().equals(mockId)) {
+                n.setStyle("-fx-background-color: red");
+            }
 
+        }
+    }
+
+    public void drawHit(int x, int y) {
+        String mockId = "b"+x+y;
+        for (Node n: mainGrid.getChildren()) {
+            if (n.getId() != null && n.getId().equals(mockId)) {
+                n.setStyle("-fx-background-color: indianred");
+            }
+        }
+    }
+
+    public void drawMiss(int x, int y) {
+        String mockId = "b"+x+y;
+        for (Node n: mainGrid.getChildren()) {
+            if (n.getId() != null && n.getId().equals(mockId)) {
+                n.setStyle("-fx-background-color: aqua");
+            }
+        }
     }
 
     public void drawMissed(int x, int y) {
-        Pane pane = new Pane();
-        secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-color: blue");
+        String mockId = "p" + x + y;
+        for (Node n : secondGrid.getChildren()) {
+            if (n.getId() != null && n.getId().equals(mockId)) {
+                n.setStyle("-fx-background-color: blue");
+            }
+
+        }
     }
 
     @FXML
@@ -180,4 +216,149 @@ public class Controller {
         System.out.println(text);
 
     }
+
+    @FXML
+    private Pane p00;
+    @FXML
+    private Pane p10;
+    @FXML
+    private Pane p20;
+    @FXML
+    private Pane p30;
+    @FXML
+    private Pane p40;
+    @FXML
+    private Pane p50;
+    @FXML
+    private Pane p01;
+    @FXML
+    private Pane p11;
+    @FXML
+    private Pane p21;
+    @FXML
+    private Pane p31;
+    @FXML
+    private Pane p41;
+    @FXML
+    private Pane p51;
+    @FXML
+    private Pane p02;
+    @FXML
+    private Pane p12;
+    @FXML
+    private Pane p22;
+    @FXML
+    private Pane p32;
+    @FXML
+    private Pane p42;
+    @FXML
+    private Pane p52;
+    @FXML
+    private Pane p03;
+    @FXML
+    private Pane p13;
+    @FXML
+    private Pane p23;
+    @FXML
+    private Pane p33;
+    @FXML
+    private Pane p43;
+    @FXML
+    private Pane p53;
+    @FXML
+    private Pane p04;
+    @FXML
+    private Pane p14;
+    @FXML
+    private Pane p24;
+    @FXML
+    private Pane p34;
+    @FXML
+    private Pane p44;
+    @FXML
+    private Pane p54;
+    @FXML
+    private Pane p05;
+    @FXML
+    private Pane p15;
+    @FXML
+    private Pane p25;
+    @FXML
+    private Pane p35;
+    @FXML
+    private Pane p45;
+    @FXML
+    private Pane p55;
+    @FXML
+    private Button b00;
+    @FXML
+    private Button b10;
+    @FXML
+    private Button b20;
+    @FXML
+    private Button b30;
+    @FXML
+    private Button b40;
+    @FXML
+    private Button b50;
+    @FXML
+    private Button b01;
+    @FXML
+    private Button b11;
+    @FXML
+    private Button b21;
+    @FXML
+    private Button b31;
+    @FXML
+    private Button b41;
+    @FXML
+    private Button b51;
+    @FXML
+    private Button b02;
+    @FXML
+    private Button b12;
+    @FXML
+    private Button b22;
+    @FXML
+    private Button b32;
+    @FXML
+    private Button b42;
+    @FXML
+    private Button b52;
+    @FXML
+    private Button b03;
+    @FXML
+    private Button b13;
+    @FXML
+    private Button b23;
+    @FXML
+    private Button b33;
+    @FXML
+    private Button b43;
+    @FXML
+    private Button b53;
+    @FXML
+    private Button b04;
+    @FXML
+    private Button b14;
+    @FXML
+    private Button b24;
+    @FXML
+    private Button b34;
+    @FXML
+    private Button b44;
+    @FXML
+    private Button b54;
+    @FXML
+    private Button b05;
+    @FXML
+    private Button b15;
+    @FXML
+    private Button b25;
+    @FXML
+    private Button b35;
+    @FXML
+    private Button b45;
+    @FXML
+    private Button b55;
 }

@@ -84,28 +84,27 @@ public class ComunicationService implements Service, Runnable {
             case ("HIT"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showHitOnMainGrid(x, y);
+                controller.drawHit(x,y);
                 break;
 
             case ("MISS"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
-                //showMissOnMainGrid(x, y);
+                controller.drawMiss(x,y);
                 break;
 
             case ("HITTED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
-
-                //controller.drawHitted(x,y);
+                controller.drawHitted(x,y);
                 break;
 
             case ("MISSED"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
-                //controller.drawMissed(x,y);
+                controller.drawMissed(x,y);
                 break;
 
             case ("WON"):
