@@ -5,11 +5,7 @@ import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.Set;
 
 /**
@@ -124,11 +120,12 @@ public class ComunicationService implements Service, Runnable {
             case ("WON"):
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
-                //disconnect();
+                disconnect();
                 break;
 
             case ("LOSER"):
                 System.out.println("perdeste!!!!!!!!");
+                disconnect();
                 break;
 
             default:

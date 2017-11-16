@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -99,7 +98,7 @@
             <Pane fx:id="p51" layoutX="107.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
             <Pane fx:id="p02" layoutX="132.0" layoutY="29.0" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
             <Pane fx:id="p12" layoutX="10.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Pane fx:id="p22" layoutX="34.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Pane fx:id="p22" layoutX="34.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Pane fx:id="p32" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Pane fx:id="p42" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <Pane fx:id="p52" layoutX="107.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
@@ -124,7 +123,6 @@
          </children>
 
       </GridPane>
-      <TextArea fx:id="textArea" editable="false" layoutX="359.0" layoutY="200.0" prefHeight="79.0" prefWidth="192.0" />
-      <TextField fx:id="textField" layoutX="359.0" layoutY="287.0" onAction="#textFieldPressed" onKeyPressed="#teste" prefHeight="27.0" prefWidth="192.0" />
+      <Label fx:id="label" alignment="CENTER" layoutX="343.0" layoutY="212.0" prefHeight="47.0" prefWidth="187.0" text="L" />
    </children>
 </Pane>

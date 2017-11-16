@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -11,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
@@ -24,15 +24,6 @@ public class Controller {
     private ComunicationService comunicationService;
     private Grid primaryGrid;
 
-    @FXML
-    private GridPane secondGrid;
-
-    @FXML
-    private GridPane mainGrid;
-
-    @FXML
-    private Button startButton;
-
     public Controller() {
 
         this.x = 0;
@@ -41,6 +32,7 @@ public class Controller {
             primaryGrid = new Grid();
             comunicationService = new ComunicationService(8080, primaryGrid);
             comunicationService.setController(this);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -70,7 +62,7 @@ public class Controller {
 
     @FXML
     void startButtonPressed(MouseEvent event) {
-        //depois de cada ataque ser lançado as posiçoes tem que voltar a ser null
+
         if (startButton.getText().contains("Send")) {
 
             comunicationService.sendBeers();
@@ -78,12 +70,16 @@ public class Controller {
             drawBeers();
             startButton.setText("Attack");
             cleanGrid();
-        if (comunicationService.getPlayer()==0){
-            startButton.setDisable(true);
-            comunicationService.setPlayer(1);
+            label.setText("jhfjhga");
+
+
+            if (comunicationService.getPlayer() == 0) {
+                startButton.setDisable(true);
+                comunicationService.setPlayer(1);
+                return;
+            }
         }
-            return;
-        }
+
         if (startButton.getText().contains("Attack")) {
             startButton.setDisable(true);
             comunicationService.sendAttack(x, y);
@@ -99,10 +95,6 @@ public class Controller {
         }
     }
 
-    public void play() {
-
-    }
-
     // WORK IN PROGRESS!!!
     public void lockButton() {
         int count = 0;
@@ -113,28 +105,6 @@ public class Controller {
             count++;
 
         }
-    }
-
-    //
-    public void events() {
-
-    }
-
-    public Integer getPositionX(Button button) {
-
-        Integer x = GridPane.getColumnIndex(button);
-        return (x == null) ? 0 : x;
-
-    }
-
-    public Integer getPositionY(Button button) {
-
-        Integer y = GridPane.getRowIndex(button);
-        return (y == null) ? 0 : y;
-    }
-
-    public void gameLost() {
-
     }
 
     public void releaseStartButton() {
@@ -155,9 +125,6 @@ public class Controller {
                     n.setStyle("-fx-background-color: yellow");
 
                 }
-            /* Pane pane = new Pane();
-            secondGrid.add(pane, x, y);
-            pane.setStyle("-fx-background-color: green"); */
             }
         }
     }
@@ -173,8 +140,8 @@ public class Controller {
     }
 
     public void drawHit(int x, int y) {
-        String mockId = "b"+x+y;
-        for (Node n: mainGrid.getChildren()) {
+        String mockId = "b" + x + y;
+        for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-color: indianred");
             }
@@ -182,8 +149,8 @@ public class Controller {
     }
 
     public void drawMiss(int x, int y) {
-        String mockId = "b"+x+y;
-        for (Node n: mainGrid.getChildren()) {
+        String mockId = "b" + x + y;
+        for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-color: aqua");
             }
@@ -196,31 +163,32 @@ public class Controller {
             if (n.getId() != null && n.getId().equals(mockId)) {
                 n.setStyle("-fx-background-color: blue");
             }
-
         }
     }
 
-    @FXML
-    private TextArea textArea;
+    private Integer getPositionX(Button button) {
 
-    @FXML
-    private TextField textField;
-
-    @FXML
-    void teste(KeyEvent event) {
+        Integer x = GridPane.getColumnIndex(button);
+        return (x == null) ? 0 : x;
 
     }
 
-    @FXML
-    void textFieldPressed(ActionEvent event) {
+    private Integer getPositionY(Button button) {
 
-        String text = textField.getCharacters().toString();
-
-        textArea.appendText(text+"\n");
-        System.out.println(text);
-
+        Integer y = GridPane.getRowIndex(button);
+        return (y == null) ? 0 : y;
     }
 
+
+
+    @FXML
+    private Label label;
+    @FXML
+    private GridPane secondGrid;
+    @FXML
+    private GridPane mainGrid;
+    @FXML
+    private Button startButton;
     @FXML
     private Pane p00;
     @FXML
