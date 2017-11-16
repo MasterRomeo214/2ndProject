@@ -8,7 +8,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
@@ -23,6 +22,7 @@ public class Controller {
     private Grid primaryGrid;
 
     private Sound ambientSound = new Sound("/resources/ambient.wav");
+    private Sound introF = new Sound("/resources/introF.wav");
 
 
 
@@ -46,6 +46,7 @@ public class Controller {
             comunicationService.setController(this);
 
             ambientSound.play(true);
+            ambientSound.loopIndef();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,6 +83,7 @@ public class Controller {
             comunicationService.sendBeers();
             secondGrid.setVisible(true);
             drawBeers();
+            introF.play(true);
             startButton.setText("Attack");
             cleanGrid();
             return;
