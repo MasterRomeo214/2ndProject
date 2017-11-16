@@ -3,6 +3,7 @@ package org.academiadecodigo.enuminatti.beerbattle.client.service;
 import org.academiadecodigo.enuminatti.beerbattle.client.controller.Controller;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
+import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
 import java.io.*;
 import java.net.Socket;
@@ -19,6 +20,29 @@ public class ComunicationService implements Service, Runnable {
     private Controller controller;
     private Grid grid;
     private int player;
+
+    //HIT SOUND
+    private Sound carica = new Sound("/resources/carica.wav");
+    private Sound arrotoJP = new Sound("/resources/arrotoJP.wav");
+    private Sound arrotoR = new Sound("/resources/arrotoR.wav");
+    private Sound gluglu = new Sound("/resources/gluglu.wav");
+
+    //MISS SOUND
+    private Sound naoTiraSede = new Sound("/resources/naoTiraSede.wav");
+    private Sound trazCerveja = new Sound("/resources/trazCerveja.wav");
+    private Sound eh = new Sound("/resources/eh.wav");
+
+    //HITTED SOUND
+    private Sound ahCara = new Sound("/resources/ahCara.wav");
+    private Sound ohMinha = new Sound("/resources/ohMinha.wav");
+    private Sound olha = new Sound("/resources/olha.wav");
+
+    //MISSED SOUND
+    private Sound agua = new Sound("/resources/agua.wav");
+    private Sound naoSabias = new Sound("/resources/naoSabias.wav");
+    private Sound torto = new Sound("/resources/torto.wav");
+
+
 
     public ComunicationService(int portNumber, Grid grid) throws IOException {
         this.grid = grid;
@@ -91,12 +115,14 @@ public class ComunicationService implements Service, Runnable {
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.drawHit(x, y);
+                playHitSound();
                 break;
 
             case ("MISS"):
                 x = Integer.valueOf(splitMessage[1]);
                 y = Integer.valueOf(splitMessage[2]);
                 controller.drawMiss(x, y);
+                playMissSound();
                 break;
 
             case ("HITTED"):
@@ -104,6 +130,7 @@ public class ComunicationService implements Service, Runnable {
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
                 controller.drawHitted(x, y);
+                playHittedSound();
                 break;
 
             case ("MISSED"):
@@ -111,6 +138,7 @@ public class ComunicationService implements Service, Runnable {
                 y = Integer.valueOf(splitMessage[2]);
                 controller.releaseStartButton();
                 controller.drawMissed(x, y);
+                playMissedSound();
                 break;
 
             case ("PLAYER1"):
@@ -134,6 +162,92 @@ public class ComunicationService implements Service, Runnable {
                 break;
         }
     }
+
+    private void playHitSound() {
+        int randomNumber = 1;
+
+        switch (randomNumber = (int) (Math.random() * 6)){
+            case 1:
+                gluglu.play(true);
+                break;
+            case 2:
+                arrotoJP.play(true);
+                break;
+            case 3:
+                break;
+            case 4:
+                arrotoR.play(true);
+                break;
+            case 5:
+                break;
+            case 6:
+                carica.play(true);
+                break;
+        }
+    }
+
+    private void playMissSound() {
+        int randomNumber = 1;
+
+        switch (randomNumber = (int) (Math.random() * 6)){
+            case 1:
+                naoTiraSede.play(true);
+                break;
+            case 2:
+                break;
+            case 3:
+                trazCerveja.play(true);
+                break;
+            case 4:
+                break;
+            case 5:
+                eh.play(true);
+                break;
+        }
+    }
+
+    private void playHittedSound() {
+        int randomNumber = 1;
+
+        switch (randomNumber = (int) (Math.random() * 6)){
+            case 1:
+                ahCara.play(true);
+                break;
+            case 2:
+                break;
+            case 3:
+                ohMinha.play(true);
+                break;
+            case 4:
+                olha.play(true);
+                break;
+            case 5:
+                break;
+        }
+    }
+
+    private void playMissedSound() {
+        int randomNumber = 1;
+
+        switch (randomNumber = (int) (Math.random() * 6)){
+            case 1:
+                break;
+            case 2:
+                agua.play(true);
+                break;
+            case 3:
+                naoSabias.play(true);
+                break;
+            case 4:
+                torto.play(true);
+                break;
+            case 5:
+                break;
+        }
+    }
+
+
+
 
     @Override
     public void run() {

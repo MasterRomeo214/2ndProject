@@ -36,7 +36,7 @@ public class Grid {
         return beer;
     }
 
-    public void createBeer( int x, int y) {
+    public void createBeer(int x, int y) {
         if (beersLeft > 0) {
             beers.add(new Beer(x, y));
             beersLeft--;
@@ -49,6 +49,6 @@ public class Grid {
         Beer beer;
         beer = getBeer(x, y);
         beers.remove(beer);
-        beersLeft+=1;
+        beersLeft += 1;
     }
 }

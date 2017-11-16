@@ -31,8 +31,6 @@ public class Game {
     private boolean endGame;
 
 
-
-
     public Game(Server server) {
         beersPlayerOne = new LinkedList<>();
         beersPlayerTwo = new LinkedList<>();
@@ -97,7 +95,6 @@ public class Game {
             sendLoser();
 
         }
-
 
 
     }
@@ -210,14 +207,14 @@ public class Game {
 
     private void sendLoser() throws IOException {
 
-        if (beersPlayerOne.size()==0) {
+        if (beersPlayerOne.size() == 0) {
             endGame = true;
             printWriterP2.println("WON");
             printWriterP1.println("LOSER");
             return;
         }
 
-        if (beersPlayerTwo.size()==0) {
+        if (beersPlayerTwo.size() == 0) {
             endGame = true;
             printWriterP1.println("WON");
             printWriterP2.println("LOSER");

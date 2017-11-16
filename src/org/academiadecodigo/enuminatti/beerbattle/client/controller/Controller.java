@@ -64,13 +64,13 @@ public class Controller {
             primaryGrid.deleteBeer(x, y);
         }
 
-        if (startButton.getText().contains("Send")&&primaryGrid.getBeersLeft()==0){
+        if (startButton.getText().contains("Send") && primaryGrid.getBeersLeft() == 0) {
             startButton.setDisable(false);
         }
     }
 
-    public void checkoIfBeerRemain(){
-        while (primaryGrid.getBeersLeft() > 0){
+    public void checkoIfBeerRemain() {
+        while (primaryGrid.getBeersLeft() > 0) {
             startButton.setDisable(true);
         }
         startButton.setDisable(false);
