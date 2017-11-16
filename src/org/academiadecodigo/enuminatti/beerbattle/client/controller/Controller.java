@@ -148,7 +148,7 @@ public class Controller {
         pane.setStyle("-fx-background-image:url resources/beerCap");
 
         }
-    }
+
 
     public void drawHit(int x, int y) {
         String mockId = "b"+x+y;
