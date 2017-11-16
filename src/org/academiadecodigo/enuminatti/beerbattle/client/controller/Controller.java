@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.BeerType;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
 import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
 
@@ -95,10 +94,6 @@ public class Controller {
         }
     }
 
-    public void play() {
-
-    }
-
     // WORK IN PROGRESS!!!
     public void lockButton() {
         int count = 0;
@@ -109,11 +104,6 @@ public class Controller {
             count++;
 
         }
-    }
-
-    //
-    public void events() {
-
     }
 
     public Integer getPositionX(Button button) {
@@ -127,10 +117,6 @@ public class Controller {
 
         Integer y = GridPane.getRowIndex(button);
         return (y == null) ? 0 : y;
-    }
-
-    public void gameLost() {
-
     }
 
     public void releaseStartButton() {
@@ -151,9 +137,7 @@ public class Controller {
                     n.setStyle("-fx-background-color: yellow");
 
                 }
-            /* Pane pane = new Pane();
-            secondGrid.add(pane, x, y);
-            pane.setStyle("-fx-background-color: green"); */
+
             }
         }
     }

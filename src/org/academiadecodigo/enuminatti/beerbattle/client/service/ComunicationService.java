@@ -56,11 +56,6 @@ public class ComunicationService implements Service, Runnable {
         System.out.println("Attack sent to " + x + " " + y);
     }
 
-    public void sendLoser() {
-
-        printWriter.println("LOSER");
-    }
-
     public void disconnect() throws IOException {
 
         bufferedReader.close();
@@ -110,7 +105,7 @@ public class ComunicationService implements Service, Runnable {
             case ("WON"):
                 //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
-                //disconnect();
+                disconnect();
                 break;
 
             case ("BOATS READY"):
