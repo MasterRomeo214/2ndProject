@@ -5,9 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -24,23 +21,13 @@ public class Controller {
     private Integer y;
     private ComunicationService comunicationService;
     private Grid primaryGrid;
+    private boolean xico;
 
     private Sound ambientSound = new Sound("/resources/ambient.wav");
     private Sound introF = new Sound("/resources/introF.wav");
 
-
-
-    @FXML
-    private GridPane secondGrid;
-
-    @FXML
-    private GridPane mainGrid;
-
-    @FXML
-    private Button startButton;
-
     public Controller() {
-
+        this.xico = false;
         this.x = 0;
         this.y = 0;
         try {
@@ -76,10 +63,23 @@ public class Controller {
             bClicked.setDefaultButton(false);
             primaryGrid.deleteBeer(x, y);
         }
+
+        if (startButton.getText().contains("Send")&&primaryGrid.getBeersLeft()==0){
+            startButton.setDisable(false);
+        }
+    }
+
+    public void checkoIfBeerRemain(){
+        while (primaryGrid.getBeersLeft() > 0){
+            startButton.setDisable(true);
+        }
+        startButton.setDisable(false);
+
     }
 
     @FXML
     void startButtonPressed(MouseEvent event) {
+
 
         if (startButton.getText().contains("Send")) {
 
@@ -95,7 +95,7 @@ public class Controller {
             if (comunicationService.getPlayer() == 0) {
                 startButton.setDisable(true);
                 comunicationService.setPlayer(1);
-                return;
+                //return;
             }
         }
 
@@ -140,7 +140,7 @@ public class Controller {
     }
 
 
-    public void stopSound(){
+    public void stopSound() {
         ambientSound.stop();
     }
 
@@ -166,20 +166,12 @@ public class Controller {
         }
     }
 
-    public void drawHitted(int x, int y) {
-        Pane pane = new Pane();
-        secondGrid.getChildren().get(1).setStyle("-fx-background-color: red");
-        secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-image:url resources/beerCap");
-
-        }
-
 
     public void drawHit(int x, int y) {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-color: indianred");
+                n.setStyle("-fx-background-image: beer");
             }
         }
     }
@@ -188,19 +180,27 @@ public class Controller {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-color: aqua");
+                n.setStyle("-fx-background-image: Water");
             }
         }
     }
 
-    public void drawMissed(int x, int y) {
-        Pane pane = new Pane();
-        secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-image: resources/waterCap");
+    public void drawHitted(int x, int y) {
         String mockId = "p" + x + y;
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-color: blue");
+                n.setStyle("-fx-background-image: url('beerCap.jpg')");
+            }
+
+        }
+    }
+
+    public void drawMissed(int x, int y) {
+
+        String mockId = "p" + x + y;
+        for (Node n : secondGrid.getChildren()) {
+            if (n.getId() != null && n.getId().equals(mockId)) {
+                n.setStyle("-fx-background-image: waterCap");
             }
 
         }
