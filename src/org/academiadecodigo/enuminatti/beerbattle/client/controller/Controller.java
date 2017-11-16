@@ -152,13 +152,13 @@ public class Controller {
         Pane pane = new Pane();
         secondGrid.getChildren().get(1).setStyle("-fx-background-color: red");
         secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-color: crimson");
+        pane.setStyle("-fx-background-image:url resources/beerCap");
 
     }
 
     public void drawMissed(int x, int y) {
         Pane pane = new Pane();
         secondGrid.add(pane, x, y);
-        pane.setStyle("-fx-background-color: blue");
+        pane.setStyle("-fx-background-image: resources/waterCap");
     }
 }
