@@ -77,7 +77,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size() == 0) {
             sendLoser();
-            disconnect();
+            //disconnect();
 
         }
 
@@ -92,7 +92,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size() == 0) {
             sendLoser();
-            disconnect();
+            //disconnect();
 
         }
 
@@ -224,6 +224,7 @@ public class Game {
     public void disconnect() {
 
         try {
+            server.setEndGame(true);
             bufferedReaderP1.close();
             bufferedReaderP2.close();
             printWriterP1.close();

@@ -80,7 +80,7 @@ public class Controller {
             drawBeers();
             introF.play(true);
             startButton.setText("Attack");
-            label.setText("Guess your opponents beer and press Attack");
+            label.setText("Make a guess and press Attack");
             cleanGrid();
 
 

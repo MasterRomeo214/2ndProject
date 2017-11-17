@@ -20,6 +20,7 @@ public class ComunicationService implements Service, Runnable {
     private Controller controller;
     private Grid grid;
     private int player;
+    private boolean endGame = false;
 
     //HIT SOUND
     private Sound carica = new Sound("/resources/carica.wav");
@@ -46,6 +47,7 @@ public class ComunicationService implements Service, Runnable {
     private Sound loser = new Sound("/resources/loser.wav");
     private Sound winner = new Sound("/resources/winner.wav");
 
+    Thread thread;
 
 
     public ComunicationService(int portNumber, Grid grid) throws IOException {
@@ -53,7 +55,7 @@ public class ComunicationService implements Service, Runnable {
         serverSocket = new Socket("localhost", portNumber);
         bufferedReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
         printWriter = new PrintWriter(serverSocket.getOutputStream(), true);
-        Thread thread = new Thread(this);
+        thread = new Thread(this);
         thread.start();
         player = 0;
     }
@@ -153,6 +155,7 @@ public class ComunicationService implements Service, Runnable {
                 controller.stopSound();
                 System.out.println("ganhaste!!!!!!!!!!");
                 winner.play(true);
+                endGame = true;
                 disconnect();
                 break;
 
@@ -160,6 +163,7 @@ public class ComunicationService implements Service, Runnable {
                 System.out.println("perdeste!!!!!!!!");
                 controller.stopSound();
                 loser.play(true);
+                endGame = true;
                 disconnect();
                 break;
 
@@ -257,7 +261,7 @@ public class ComunicationService implements Service, Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (!endGame) {
             try {
                 receiveMessage();
 
@@ -265,6 +269,11 @@ public class ComunicationService implements Service, Runnable {
 
                 e.printStackTrace();
             }
+        }
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -12,18 +12,21 @@ import java.net.Socket;
 public class Server {
 
     private ServerSocket serverSocket;
-    public final static int PORTNUMBER = 8080;
-    Game game;
+    private final static int PORTNUMBER = 8080;
+    private Game game;
+    private boolean endGame;
 
 
     public Server() throws IOException {
+        this.endGame = false;
         this.game = null;
         serverSocket = new ServerSocket(PORTNUMBER);
         System.out.println("Waiting player " + serverSocket.getLocalPort());
     }
 
     private void start() {
-        while (true) {
+
+        while (!endGame) {
 
             try {
                 game.interpretMessage();
@@ -39,7 +42,6 @@ public class Server {
 
         int connectionCount = 0;
         game = new Game(this);
-
 
         while (connectionCount < 2) {
 
@@ -59,7 +61,6 @@ public class Server {
         }
 
         System.out.println("LEAVING INIT SERVER");
-
     }
 
 
@@ -76,6 +77,10 @@ public class Server {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
     }
 }
 
