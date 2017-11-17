@@ -43,8 +43,8 @@ public class ComunicationService implements Service, Runnable {
     private Sound torto = new Sound("/resources/torto.wav");
 
     //END SOUND
-    private Sound loser = new Sound("/resources/winner.wav");
-    private Sound winner = new Sound("/resources/loser.wav");
+    private Sound loser = new Sound("/resources/loser.wav");
+    private Sound winner = new Sound("/resources/winner.wav");
 
 
 
