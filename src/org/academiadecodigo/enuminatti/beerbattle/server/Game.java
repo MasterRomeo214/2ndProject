@@ -3,13 +3,11 @@ package org.academiadecodigo.enuminatti.beerbattle.server;
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
 import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.util.LinkedList;
 
@@ -29,8 +27,6 @@ public class Game {
     private PrintWriter printWriterP1;
     private PrintWriter printWriterP2;
     private boolean endGame;
-
-
 
 
     public Game(Server server) {
@@ -81,6 +77,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size() == 0) {
             sendLoser();
+            disconnect();
 
         }
 
@@ -95,9 +92,9 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size() == 0) {
             sendLoser();
+            disconnect();
 
         }
-
 
 
     }
@@ -210,18 +207,17 @@ public class Game {
 
     private void sendLoser() throws IOException {
 
-        if (beersPlayerOne.size()==0) {
+        if (beersPlayerOne.size() == 0) {
             endGame = true;
             printWriterP2.println("WON");
             printWriterP1.println("LOSER");
             return;
         }
 
-        if (beersPlayerTwo.size()==0) {
+        if (beersPlayerTwo.size() == 0) {
             endGame = true;
             printWriterP1.println("WON");
             printWriterP2.println("LOSER");
-
         }
     }
 
