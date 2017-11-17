@@ -69,14 +69,6 @@ public class Controller {
         }
     }
 
-    public void checkoIfBeerRemain() {
-        while (primaryGrid.getBeersLeft() > 0) {
-            startButton.setDisable(true);
-        }
-        startButton.setDisable(false);
-
-    }
-
     @FXML
     void startButtonPressed(MouseEvent event) {
 
@@ -89,11 +81,9 @@ public class Controller {
             introF.play(true);
             startButton.setText("Attack");
             cleanGrid();
-            label.setText("jhfjhga");
 
 
             if (comunicationService.getPlayer() == 0) {
-                System.out.println("eu tenho um penis grande");
                 startButton.setDisable(true);
                 comunicationService.setPlayer(1);
             }
@@ -101,6 +91,7 @@ public class Controller {
         }
 
         if (startButton.getText().contains("Attack")) {
+            label.setText("Guess your opponents beer and press Attack");
             startButton.setDisable(true);
             comunicationService.sendAttack(x, y);
         }
@@ -111,18 +102,6 @@ public class Controller {
         for (Node n : mainGrid.getChildren()) {
             Button b = (Button) n;
             b.setDefaultButton(false);
-
-        }
-    }
-
-    // WORK IN PROGRESS!!!
-    public void lockButton() {
-        int count = 0;
-
-        for (Node n : secondGrid.getChildren()) {
-            Button b = (Button) n;
-            b.setId("" + count);
-            count++;
 
         }
     }
