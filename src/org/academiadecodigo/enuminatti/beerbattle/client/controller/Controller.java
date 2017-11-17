@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -46,6 +48,7 @@ public class Controller {
     @FXML
     void buttonPressed(ActionEvent event) {
 
+
         Button bClicked = (Button) event.getSource();
         x = getPositionX(bClicked);
         y = getPositionY(bClicked);
@@ -66,6 +69,42 @@ public class Controller {
 
         if (startButton.getText().contains("Send") && primaryGrid.getBeersLeft() == 0) {
             startButton.setDisable(false);
+        }
+    }
+
+    public void changeImageToWinner() {
+
+        for (Node n : PanedasPanes.getChildren()) {
+            if (n.getId() != null && n.getId().equals("backgroundView")) {
+                n.setStyle("-fx-image:url('winner.png')");
+                //n.toFront();
+            }
+
+        }
+
+        for (Node n : PanedasPanes.getChildren()) {
+            if (n.getId() != null && !n.getId().equals("backgroundView")) {
+                // n.setStyle("-fx-image:url('winner.png')");
+                n.setVisible(false);
+            }
+        }
+    }
+
+    public void changeImageToLoser() {
+
+        for (Node n : PanedasPanes.getChildren()) {
+            if (n.getId() != null && n.getId().equals("backgroundView")) {
+                n.setStyle("-fx-image:url('loser.jpg')");
+                //n.toFront();
+            }
+
+        }
+
+        for (Node n : PanedasPanes.getChildren()) {
+            if (n.getId() != null && !n.getId().equals("backgroundView")) {
+                // n.setStyle("-fx-image:url('winner.png')");
+                n.setVisible(false);
+            }
         }
     }
 
@@ -193,6 +232,13 @@ public class Controller {
         }
     }
 
+
+    @FXML
+    private Pane PanedasPanes;
+    @FXML
+    private ImageView backgroundView;
+    @FXML
+    private Pane paneView;
     @FXML
     private Label label;
     @FXML

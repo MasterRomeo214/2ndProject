@@ -152,15 +152,15 @@ public class ComunicationService implements Service, Runnable {
                 break;
 
             case ("WON"):
+                controller.changeImageToWinner();
                 controller.stopSound();
-                System.out.println("ganhaste!!!!!!!!!!");
                 winner.play(true);
                 endGame = true;
                 disconnect();
                 break;
 
             case ("LOSER"):
-                System.out.println("perdeste!!!!!!!!");
+                controller.changeImageToLoser();
                 controller.stopSound();
                 loser.play(true);
                 endGame = true;

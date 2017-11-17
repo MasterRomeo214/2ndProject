@@ -1,7 +1,6 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
 
 import java.io.BufferedReader;
@@ -77,7 +76,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerOne.size() == 0) {
             sendLoser();
-            //disconnect();
+            disconnect();
 
         }
 
@@ -92,7 +91,7 @@ public class Game {
         sendAttacks(splitMessageP1, splitMessageP2);
         if (beersPlayerTwo.size() == 0) {
             sendLoser();
-            //disconnect();
+            disconnect();
 
         }
 
