@@ -1,6 +1,7 @@
 package org.academiadecodigo.enuminatti.beerbattle.server;
 
 import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
 
 
 import java.io.BufferedReader;
@@ -215,7 +216,6 @@ public class Game {
             endGame = true;
             printWriterP1.println("WON");
             printWriterP2.println("LOSER");
-
         }
     }
 

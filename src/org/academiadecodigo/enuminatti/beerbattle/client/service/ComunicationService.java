@@ -42,6 +42,10 @@ public class ComunicationService implements Service, Runnable {
     private Sound naoSabias = new Sound("/resources/naoSabias.wav");
     private Sound torto = new Sound("/resources/torto.wav");
 
+    //END SOUND
+    private Sound loser = new Sound("/resources/winner.wav");
+    private Sound winner = new Sound("/resources/loser.wav");
+
 
 
     public ComunicationService(int portNumber, Grid grid) throws IOException {
@@ -147,13 +151,15 @@ public class ComunicationService implements Service, Runnable {
 
             case ("WON"):
                 controller.stopSound();
-                //game ends and view updates with winner message
                 System.out.println("ganhaste!!!!!!!!!!");
+                winner.play(true);
                 disconnect();
                 break;
 
             case ("LOSER"):
                 System.out.println("perdeste!!!!!!!!");
+                controller.stopSound();
+                loser.play(true);
                 disconnect();
                 break;
 
@@ -194,14 +200,14 @@ public class ComunicationService implements Service, Runnable {
                 naoTiraSede.play(true);
                 break;
             case 2:
-                break;
-            case 3:
                 trazCerveja.play(true);
                 break;
+            case 3:
+                break;
             case 4:
+                eh.play(true);
                 break;
             case 5:
-                eh.play(true);
                 break;
         }
     }
