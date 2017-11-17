@@ -74,7 +74,7 @@ public class Controller {
     public void changeImageToWinner() {
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && n.getId().equals("/images/backgroundView")) {
+            if (n.getId() != null && n.getId().equals("backgroundView")) {
                 n.setStyle("-fx-image:url('/images/winner.png')");
                 //n.toFront();
             }
@@ -82,7 +82,7 @@ public class Controller {
         }
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && !n.getId().equals("/images/backgroundView")) {
+            if (n.getId() != null && !n.getId().equals("backgroundView")) {
                 // n.setStyle("-fx-image:url('winner.png')");
                 n.setVisible(false);
             }
@@ -92,7 +92,7 @@ public class Controller {
     public void changeImageToLoser() {
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && n.getId().equals("/images/backgroundView")) {
+            if (n.getId() != null && n.getId().equals("backgroundView")) {
                 n.setStyle("-fx-image:url('/images/loser.jpg')");
                 //n.toFront();
             }
@@ -100,7 +100,7 @@ public class Controller {
         }
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && !n.getId().equals("/images/backgroundView")) {
+            if (n.getId() != null && !n.getId().equals("backgroundView")) {
                 // n.setStyle("-fx-image:url('winner.png')");
                 n.setVisible(false);
             }
