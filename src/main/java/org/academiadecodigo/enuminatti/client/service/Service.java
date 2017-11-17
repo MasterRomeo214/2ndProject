@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.service;
+package org.academiadecodigo.enuminatti.client.service;
 
 /**
  * Created by codecadet on 07/11/17.

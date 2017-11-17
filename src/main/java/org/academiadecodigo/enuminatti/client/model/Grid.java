@@ -1,6 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.model;
-
-import org.academiadecodigo.enuminatti.beerbattle.client.controller.Controller;
+package org.academiadecodigo.enuminatti.client.model;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.model;
+package org.academiadecodigo.enuminatti.client.model;
 
 /**
  * Created by codecadet on 10/11/17.

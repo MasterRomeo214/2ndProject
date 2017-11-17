@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.server;
+package org.academiadecodigo.enuminatti.server;
 
 
 import java.io.IOException;

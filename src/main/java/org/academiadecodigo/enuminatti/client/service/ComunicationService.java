@@ -1,9 +1,9 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.service;
+package org.academiadecodigo.enuminatti.client.service;
 
-import org.academiadecodigo.enuminatti.beerbattle.client.controller.Controller;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
-import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
+import org.academiadecodigo.enuminatti.client.controller.Controller;
+import org.academiadecodigo.enuminatti.client.model.Beer;
+import org.academiadecodigo.enuminatti.client.model.Grid;
+import org.academiadecodigo.enuminatti.utils.Sound;
 
 import java.io.*;
 import java.net.Socket;
@@ -23,36 +23,36 @@ public class ComunicationService implements Service, Runnable {
     private boolean endGame = false;
 
     //HIT SOUND
-    private Sound carica = new Sound("/resources/carica.wav");
-    private Sound arrotoJP = new Sound("/resources/arrotoJP.wav");
-    private Sound arrotoR = new Sound("/resources/arrotoR.wav");
-    private Sound gluglu = new Sound("/resources/gluglu.wav");
+    private Sound carica = new Sound("/sounds/carica.wav");
+    private Sound arrotoJP = new Sound("/sounds/arrotoJP.wav");
+    private Sound arrotoR = new Sound("/sounds/arrotoR.wav");
+    private Sound gluglu = new Sound("/sounds/gluglu.wav");
 
     //MISS SOUND
-    private Sound naoTiraSede = new Sound("/resources/naoTiraSede.wav");
-    private Sound trazCerveja = new Sound("/resources/trazCerveja.wav");
-    private Sound eh = new Sound("/resources/eh.wav");
+    private Sound naoTiraSede = new Sound("/sounds/naoTiraSede.wav");
+    private Sound trazCerveja = new Sound("/sounds/trazCerveja.wav");
+    private Sound eh = new Sound("/sounds/eh.wav");
 
     //HITTED SOUND
-    private Sound ahCara = new Sound("/resources/ahCara.wav");
-    private Sound ohMinha = new Sound("/resources/ohMinha.wav");
-    private Sound olha = new Sound("/resources/olha.wav");
+    private Sound ahCara = new Sound("/sounds/ahCara.wav");
+    private Sound ohMinha = new Sound("/sounds/ohMinha.wav");
+    private Sound olha = new Sound("/sounds/olha.wav");
 
     //MISSED SOUND
-    private Sound agua = new Sound("/resources/agua.wav");
-    private Sound naoSabias = new Sound("/resources/naoSabias.wav");
-    private Sound torto = new Sound("/resources/torto.wav");
+    private Sound agua = new Sound("/sounds/agua.wav");
+    private Sound naoSabias = new Sound("/sounds/naoSabias.wav");
+    private Sound torto = new Sound("/sounds/torto.wav");
 
     //END SOUND
-    private Sound loser = new Sound("/resources/loser.wav");
-    private Sound winner = new Sound("/resources/winner.wav");
+    private Sound loser = new Sound("/sounds/loser.wav");
+    private Sound winner = new Sound("/sounds/winner.wav");
 
     Thread thread;
 
 
     public ComunicationService(int portNumber, Grid grid) throws IOException {
         this.grid = grid;
-        serverSocket = new Socket("localhost", portNumber);
+        serverSocket = new Socket("192.168.1.12", portNumber);
         bufferedReader = new BufferedReader(new InputStreamReader(serverSocket.getInputStream()));
         printWriter = new PrintWriter(serverSocket.getOutputStream(), true);
         thread = new Thread(this);

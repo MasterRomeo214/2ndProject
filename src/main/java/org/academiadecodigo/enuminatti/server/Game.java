@@ -1,6 +1,6 @@
-package org.academiadecodigo.enuminatti.beerbattle.server;
+package org.academiadecodigo.enuminatti.server;
 
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
+import org.academiadecodigo.enuminatti.client.model.Beer;
 
 
 import java.io.BufferedReader;

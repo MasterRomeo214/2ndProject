@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.client.controller;
+package org.academiadecodigo.enuminatti.client.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,14 +6,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Beer;
-import org.academiadecodigo.enuminatti.beerbattle.client.model.Grid;
-import org.academiadecodigo.enuminatti.beerbattle.client.service.ComunicationService;
-import org.academiadecodigo.enuminatti.beerbattle.utils.Sound;
+import org.academiadecodigo.enuminatti.client.model.Beer;
+import org.academiadecodigo.enuminatti.client.model.Grid;
+import org.academiadecodigo.enuminatti.client.service.ComunicationService;
+import org.academiadecodigo.enuminatti.utils.Sound;
 
 import java.io.IOException;
 
@@ -25,8 +24,8 @@ public class Controller {
     private Grid primaryGrid;
     private boolean xico;
 
-    private Sound ambientSound = new Sound("/resources/ambient.wav");
-    private Sound introF = new Sound("/resources/introF.wav");
+    private Sound ambientSound = new Sound("/sounds/ambient.wav");
+    private Sound introF = new Sound("/sounds/introF.wav");
 
     public Controller() {
         this.xico = false;
@@ -75,15 +74,15 @@ public class Controller {
     public void changeImageToWinner() {
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && n.getId().equals("backgroundView")) {
-                n.setStyle("-fx-image:url('winner.png')");
+            if (n.getId() != null && n.getId().equals("/images/backgroundView")) {
+                n.setStyle("-fx-image:url('/images/winner.png')");
                 //n.toFront();
             }
 
         }
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && !n.getId().equals("backgroundView")) {
+            if (n.getId() != null && !n.getId().equals("/images/backgroundView")) {
                 // n.setStyle("-fx-image:url('winner.png')");
                 n.setVisible(false);
             }
@@ -93,15 +92,15 @@ public class Controller {
     public void changeImageToLoser() {
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && n.getId().equals("backgroundView")) {
-                n.setStyle("-fx-image:url('loser.jpg')");
+            if (n.getId() != null && n.getId().equals("/images/backgroundView")) {
+                n.setStyle("-fx-image:url('/images/loser.jpg')");
                 //n.toFront();
             }
 
         }
 
         for (Node n : PanedasPanes.getChildren()) {
-            if (n.getId() != null && !n.getId().equals("backgroundView")) {
+            if (n.getId() != null && !n.getId().equals("/images/backgroundView")) {
                 // n.setStyle("-fx-image:url('winner.png')");
                 n.setVisible(false);
             }
@@ -178,7 +177,7 @@ public class Controller {
 
             for (Node n : secondGrid.getChildren()) {
                 if (n.getId() != null && n.getId().equals(beerId)) {
-                    n.setStyle("-fx-background-image:url('beerCap.jpg')");
+                    n.setStyle("-fx-background-image:url('/images/beerCap.jpg')");
 
                 }
             }
@@ -190,7 +189,7 @@ public class Controller {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: url('beer.jpg')");
+                n.setStyle("-fx-background-image: url('/images/beer.jpg')");
                 n.setMouseTransparent(true);
 
             }
@@ -201,7 +200,7 @@ public class Controller {
         String mockId = "b" + x + y;
         for (Node n : mainGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: url('Water.jpg')");
+                n.setStyle("-fx-background-image: url('/images/water.jpg')");
                 n.setMouseTransparent(true);
 
             }
@@ -212,7 +211,7 @@ public class Controller {
         String mockId = "p" + x + y;
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: url('beerCapHit.jpg')");
+                n.setStyle("-fx-background-image: url('/images/beerCapHit.jpg')");
                 n.setMouseTransparent(true);
             }
 
@@ -224,7 +223,7 @@ public class Controller {
         String mockId = "p" + x + y;
         for (Node n : secondGrid.getChildren()) {
             if (n.getId() != null && n.getId().equals(mockId)) {
-                n.setStyle("-fx-background-image: url('waterCap.jpg')");
+                n.setStyle("-fx-background-image: url('/images/waterCap.jpg')");
                 n.setMouseTransparent(true);
 
             }

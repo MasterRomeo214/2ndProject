@@ -1,4 +1,4 @@
-package org.academiadecodigo.enuminatti.beerbattle.utils;
+package org.academiadecodigo.enuminatti.utils;
 
 import javax.sound.sampled.*;
 import java.io.File;
