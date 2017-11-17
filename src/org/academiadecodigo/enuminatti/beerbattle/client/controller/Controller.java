@@ -80,6 +80,7 @@ public class Controller {
             drawBeers();
             introF.play(true);
             startButton.setText("Attack");
+            label.setText("Guess your opponents beer and press Attack");
             cleanGrid();
 
 
@@ -91,7 +92,6 @@ public class Controller {
         }
 
         if (startButton.getText().contains("Attack")) {
-            label.setText("Guess your opponents beer and press Attack");
             startButton.setDisable(true);
             comunicationService.sendAttack(x, y);
         }

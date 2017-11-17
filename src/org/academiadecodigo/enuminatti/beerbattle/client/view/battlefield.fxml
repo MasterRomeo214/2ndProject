@@ -131,7 +131,7 @@
          </children>
 
       </GridPane>
-      <Label fx:id="label" alignment="CENTER" layoutX="295.0" layoutY="223.0" prefHeight="64.0" prefWidth="280.0" text="Place 14 beers and click Send" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="label" alignment="CENTER" layoutX="306.0" layoutY="222.0" prefHeight="64.0" prefWidth="280.0" text="Place 14 beers and click Send" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="16.0" />
          </font></Label>
